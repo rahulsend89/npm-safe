@@ -1,0 +1,9 @@
+{
+  "filesystem": {
+    "blockedReadPaths": [".ssh", ".aws"],
+    "blockedWritePaths": ["/etc/"]
+  },
+  "network": {
+    "blockedDomains": ["pastebin.com"]
+  }
+}
