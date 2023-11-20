@@ -1,7 +1,16 @@
 {
   "name": "node-firewall",
-  "version": "0.1.0",
-  "description": "Runtime security firewall for Node.js",
+  "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "bin": {
+    "node-firewall": "./bin/node-firewall",
+    "npm-safe": "./bin/npm-safe"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
