@@ -1,0 +1,9 @@
+{
+  "name": "malicious-filesystem-test",
+  "version": "1.0.0",
+  "description": "Test filesystem attacks - reading sensitive files and writing to protected locations",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  }
+}

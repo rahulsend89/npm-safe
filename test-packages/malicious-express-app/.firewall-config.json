@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "version": "2.0.0",
+  "description": "ZERO TRUST Configuration - Blocks everything by default. Gradually allow what you need.",
+  
+  "mode": {
+    "enabled": true,
+    "interactive": false,
+    "strictMode": true,
+    "alertOnly": false,
+    "description": "ZERO TRUST MODE: Block everything except explicitly allowed. Remove restrictions as needed."
+  },
+  
+  "filesystem": {
+    "blockedReadPaths": [
+      "/*",
+      "!/node_modules/**",
+      "!/package.json",
+      "!/package-lock.json"
+    ],
+    "blockedReadPathsDescription": "Block ALL reads except node_modules and package files. Add exceptions below.",
+    
+    "blockedWritePaths": [
+      "/*",
+      "!/node_modules/**",
+      "!/package-lock.json",
+      "!/dist/**",
+      "!/build/**",
+      "!/.cache/**"
+    ],
+    "blockedWritePathsDescription": "Block ALL writes except build outputs. Add exceptions as needed.",
+    
+    "blockedExtensions": [
+      ".sh",
+      ".bash",
+      ".zsh",
+      ".command",
+      ".py",
+      ".rb",
+      ".pl",
+      ".php",
+      ".exe",
+      ".bat",
+      ".cmd",
+      ".ps1",
+      ".app",
+      ".dmg"
+    ],
+    "blockedExtensionsDescription": "Block ALL executable file creation. Remove extensions you trust.",
+    
+    "allowedPaths": [
+      "/node_modules/**",
+      "/dist/**",
+      "/build/**",
+      "/.cache/**",
+      "/coverage/**"
+    ],
+    "allowedPathsDescription": "ONLY these paths are writable. Add your project paths here."
+  },
+  
+  "network": {
+    "enabled": true,
+    "mode": "block",
+    "allowLocalhost": true,
+    "allowPrivateNetworks": false,
+    
+    "blockedDomains": [
+      "*"
+    ],
+    "blockedDomainsDescription": "Block ALL domains by default. Use allowedDomains to whitelist.",
+    
+    "allowedDomains": [
+      "registry.npmjs.org",
+      "registry.yarnpkg.com"
+    ],
+    "allowedDomainsDescription": "ONLY npm/yarn registries allowed. Add domains you explicitly trust.",
+    
+    "suspiciousPorts": [
+      4444,
+      5555,
+      6666,
+      7777,
+      8888,
+      9999,
+      1337,
+      31337
+    ],
+    
+    "credentialPatterns": [
+      "BEGIN.*PRIVATE KEY",
+      "BEGIN.*RSA",
+      "BEGIN.*CERTIFICATE",
+      "aws_access_key",
+      "aws_secret",
+      "AKIA[0-9A-Z]{16}",
+      "api[_-]?key",
+      "auth[_-]?token",
+      "password",
+      "secret",
+      "GITHUB_TOKEN",
+      "NPM_TOKEN",
+      "SLACK_TOKEN",
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY"
+    ]
+  },
+  
+  "environment": {
+    "protectedVariables": [
+      "*"
+    ],
+    "protectedVariablesDescription": "Protect ALL environment variables. Only trustedModules can access.",
+    
+    "allowTrustedModulesAccess": true,
+    "allowTrustedModulesAccessDescription": "Only modules in trustedModules list can read ANY env vars"
+  },
+  
+  "commands": {
+    "blockedPatterns": [
+      {
+        "pattern": ".*",
+        "severity": "critical",
+        "description": "Block ALL shell commands by default"
+      }
+    ],
+    "blockedPatternsDescription": "Block ALL commands. Use allowedCommands to whitelist specific ones.",
+    
+    "allowedCommands": [
+      "node",
+      "npm"
+    ],
+    "allowedCommandsDescription": "ONLY node and npm allowed. Add git, make, etc. if you need them."
+  },
+  
+  "trustedModules": [
+    "npm",
+    "@npmcli/*"
+  ],
+  "trustedModulesDescription": "ONLY npm itself is trusted. Add packages you explicitly trust (aws-sdk, mongoose, etc.)",
+  
+  "exceptions": {
+    "description": "Add module-specific exceptions here when you trust a package",
+    "modules": {
+      "_example_dotenv": {
+        "allowEnvironment": ["*"],
+        "reason": "Remove underscore prefix to enable dotenv",
+        "_enabled": false
+      },
+      "_example_aws_sdk": {
+        "allowEnvironment": ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_REGION"],
+        "allowNetwork": ["*.amazonaws.com"],
+        "reason": "Remove underscore prefix to enable AWS SDK",
+        "_enabled": false
+      }
+    }
+  },
+  
+  "behavioral": {
+    "monitorLifecycleScripts": true,
+    "maxNetworkRequests": 5,
+    "maxFileWrites": 20,
+    "maxProcessSpawns": 2,
+    "alertThresholds": {
+      "fileReads": 50,
+      "fileWrites": 20,
+      "networkRequests": 5,
+      "processSpawns": 2
+    },
+    "description": "Very strict limits. Increase if legitimate packages are blocked."
+  },
+  
+  "reporting": {
+    "logLevel": "info",
+    "logFile": "firewall-zero-trust.log",
+    "alertOnSuspicious": true,
+    "generateReport": true,
+    "reportFile": "firewall-zero-trust-report.json"
+  },
+  
+  "githubApi": {
+    "monitorRepoCreation": true,
+    "monitorWorkflowCreation": true,
+    "blockedRepoNames": [
+      "*"
+    ],
+    "blockedRepoNamesDescription": "Block ALL repo creation by default",
+    "blockedWorkflowPatterns": [
+      "*"
+    ],
+    "blockedWorkflowPatternsDescription": "Block ALL workflow creation by default"
+  },
+  
+  "_instructions": {
+    "howToUse": [
+      "1. Start with this zero-trust config",
+      "2. Run your app: NODE_FIREWALL=1 node app.js",
+      "3. Check firewall-zero-trust.log for blocked operations",
+      "4. Gradually add exceptions:",
+      "   - Add domains to allowedDomains",
+      "   - Add commands to allowedCommands", 
+      "   - Add modules to trustedModules",
+      "   - Add paths to allowedPaths",
+      "5. Test thoroughly before deploying"
+    ],
+    "examples": {
+      "allowGit": "Add 'git' to allowedCommands",
+      "allowAWS": "Add 'aws-sdk' and '@aws-sdk/*' to trustedModules, add '*.amazonaws.com' to allowedDomains",
+      "allowDotenv": "Remove '_' prefix from _example_dotenv in exceptions.modules",
+      "allowYourAPI": "Add 'api.yourservice.com' to allowedDomains"
+    }
+  }
+}

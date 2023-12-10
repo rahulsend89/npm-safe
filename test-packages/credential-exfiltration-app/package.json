@@ -1,0 +1,9 @@
+{
+  "name": "credential-exfiltration-test",
+  "version": "1.0.0",
+  "description": "Test credential detection in network requests",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  }
+}

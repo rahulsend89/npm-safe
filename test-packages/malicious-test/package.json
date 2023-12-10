@@ -1,0 +1,19 @@
+{
+  "name": "malicious-test-package",
+  "version": "1.0.0",
+  "description": "Test package simulating supply chain attacks - FOR TESTING ONLY",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "node preinstall.js",
+    "install": "node install.js",
+    "postinstall": "node postinstall.js",
+    "test:all": "node test-all-attacks.js",
+    "test:files": "node test-file-attacks.js",
+    "test:network": "node test-network-attacks.js",
+    "test:commands": "node test-command-attacks.js",
+    "test:env": "node test-env-attacks.js"
+  },
+  "keywords": ["test", "security", "malicious"],
+  "author": "Security Testing",
+  "license": "MIT"
+}

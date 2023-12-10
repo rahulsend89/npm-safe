@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "version": "2.0.0",
+  "description": "Node Firewall Security Configuration - Central control for all security policies",
+  
+  "mode": {
+    "enabled": true,
+    "interactive": true,
+    "strictMode": false,
+    "alertOnly": false,
+    "description": "strictMode: Block everything except whitelist. alertOnly: Log but don't block"
+  },
+  
+  "filesystem": {
+    "blockedReadPaths": [
+      "/.ssh/",
+      "/.aws/",
+      "/.gnupg/",
+      "/.kube/",
+      "/.docker/",
+      "/.config/gcloud/",
+      "/.azure/",
+      "/etc/passwd",
+      "/etc/shadow",
+      "/.env",
+      "/.npmrc",
+      "/.gitconfig",
+      "/.bash_history",
+      "/.zsh_history",
+      "/.sh_history",
+      "/keychain/"
+    ],
+    
+    "blockedWritePaths": [
+      "/etc/",
+      "/.ssh/",
+      "/usr/local/bin/",
+      "/usr/bin/",
+      "/bin/",
+      "/sbin/",
+      "/Library/LaunchDaemons/",
+      "/Library/LaunchAgents/",
+      "/.github/workflows/",
+      "/home/*/.github/workflows/",
+      "/.bashrc",
+      "/.zshrc",
+      "/.profile",
+      "/.bash_profile",
+      "/.zprofile",
+      "/.git/hooks/"
+    ],
+    
+    "blockedExtensions": [
+      ".sh",
+      ".command",
+      ".bash",
+      ".zsh",
+      ".py",
+      ".rb",
+      ".pl",
+      ".php"
+    ],
+    
+    "allowedPaths": [
+      "/tmp/",
+      "/var/tmp/",
+      "/node_modules/",
+      "/.npm/",
+      "/.yarn/",
+      "/.pnpm/",
+      "/.cache/",
+      "/dist/",
+      "/build/",
+      "/public/"
+    ]
+  },
+  
+  "network": {
+    "enabled": true,
+    "mode": "block",
+    "allowLocalhost": true,
+    "allowPrivateNetworks": true,
+    
+    "blockedDomains": [
+      "paste.ee",
+      "pastebin.com",
+      "transfer.sh",
+      "temp.sh",
+      "ngrok.io",
+      "localtunnel.me",
+      "hastebin.com",
+      "ghostbin.com"
+    ],
+    
+    "allowedDomains": [
+      "registry.npmjs.org",
+      "registry.yarnpkg.com",
+      "github.com",
+      "api.github.com",
+      "raw.githubusercontent.com",
+      "nodejs.org",
+      "cdn.jsdelivr.net",
+      "unpkg.com"
+    ],
+    
+    "suspiciousPorts": [4444, 5555, 6666, 7777, 8888, 9999],
+    
+    "credentialPatterns": [
+      "BEGIN.*PRIVATE KEY",
+      "aws_access_key_id",
+      "aws_secret_access_key",
+      "GITHUB_TOKEN",
+      "NPM_TOKEN",
+      "SLACK_TOKEN",
+      "OPENAI_API_KEY"
+    ]
+  },
+  
+  "environment": {
+    "protectedVariables": [
+      "GITHUB_TOKEN",
+      "NPM_TOKEN",
+      "AWS_ACCESS_KEY_ID",
+      "AWS_SECRET_ACCESS_KEY",
+      "AZURE_CLIENT_SECRET",
+      "GCP_KEY",
+      "GOOGLE_APPLICATION_CREDENTIALS",
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "SLACK_TOKEN",
+      "STRIPE_SECRET_KEY"
+    ],
+    "allowTrustedModulesAccess": true
+  },
+  
+  "commands": {
+    "blockedPatterns": [
+      {
+        "pattern": "curl.*(-o|--output|>)",
+        "severity": "high",
+        "description": "Download to file"
+      },
+      {
+        "pattern": "wget",
+        "severity": "high",
+        "description": "Download file"
+      },
+      {
+        "pattern": "cat\\s+~/\\.(ssh|aws|gnupg)",
+        "severity": "critical",
+        "description": "Read sensitive files"
+      },
+      {
+        "pattern": "rm\\s+(-rf?|--recursive)",
+        "severity": "high",
+        "description": "Recursive delete"
+      },
+      {
+        "pattern": "nc\\s+",
+        "severity": "high",
+        "description": "Network connection"
+      },
+      {
+        "pattern": "bash\\s+-c",
+        "severity": "medium",
+        "description": "Shell command execution"
+      },
+      {
+        "pattern": "eval\\s+",
+        "severity": "high",
+        "description": "Code evaluation"
+      }
+    ],
+    
+    "allowedCommands": [
+      "npm",
+      "node",
+      "git",
+      "make",
+      "cmake",
+      "gcc",
+      "g++",
+      "python",
+      "python3"
+    ]
+  },
+  
+  "trustedModules": [
+    "npm",
+    "yarn",
+    "pnpm",
+    "@npmcli",
+    "pacote",
+    "node-gyp",
+    "aws-sdk",
+    "@aws-sdk",
+    "google-cloud",
+    "@google-cloud",
+    "azure",
+    "@azure",
+    "firebase",
+    "firebase-admin",
+    "mongoose",
+    "sequelize",
+    "prisma",
+    "@prisma",
+    "typeorm",
+    "knex"
+  ],
+  
+  "exceptions": {
+    "description": "Module-specific exceptions. Add packages that need special permissions",
+    "modules": {
+      "example-package": {
+        "allowFilesystem": ["/.config/example/"],
+        "allowNetwork": ["api.example.com"],
+        "allowCommands": ["example-cli"],
+        "reason": "Legitimate config file access"
+      }
+    }
+  },
+  
+  "behavioral": {
+    "monitorLifecycleScripts": true,
+    "maxNetworkRequests": 10,
+    "maxFileWrites": 50,
+    "maxProcessSpawns": 5,
+    "alertThresholds": {
+      "fileReads": 100,
+      "fileWrites": 50,
+      "networkRequests": 20,
+      "processSpawns": 10
+    }
+  },
+  
+  "reporting": {
+    "logLevel": "info",
+    "logFile": "fs-firewall.log",
+    "alertOnSuspicious": true,
+    "generateReport": true,
+    "reportFile": "firewall-report.json"
+  },
+  
+  "githubApi": {
+    "monitorRepoCreation": true,
+    "monitorWorkflowCreation": true,
+    "blockedRepoNames": [
+      "shai-hulud",
+      "secrets",
+      "credentials",
+      "tokens",
+      "keys"
+    ],
+    "blockedWorkflowPatterns": [
+      "discussion.yaml",
+      "self-hosted"
+    ]
+  }
+}

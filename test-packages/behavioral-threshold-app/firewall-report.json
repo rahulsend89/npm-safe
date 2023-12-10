@@ -1,0 +1,1842 @@
+[
+  {
+    "timestamp": "2025-12-04T12:32:19.642Z",
+    "package": "behavioral-threshold-test",
+    "metrics": {
+      "fileReads": 0,
+      "fileWrites": 62,
+      "networkRequests": 0,
+      "processSpawns": 0,
+      "suspiciousOperations": [
+        {
+          "timestamp": "2025-12-04T12:32:11.721Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 50,
+            "context": "/tmp/firewall-test-writes/test-49.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.723Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 51,
+            "context": "/tmp/firewall-test-writes/test-50.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.725Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 51,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-50.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.728Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 52,
+            "context": "/tmp/firewall-test-writes/test-51.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.728Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 52,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-51.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.731Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 53,
+            "context": "/tmp/firewall-test-writes/test-52.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.732Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 53,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-52.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.735Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 54,
+            "context": "/tmp/firewall-test-writes/test-53.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.736Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 54,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-53.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.740Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 55,
+            "context": "/tmp/firewall-test-writes/test-54.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.741Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 55,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-54.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.744Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 56,
+            "context": "/tmp/firewall-test-writes/test-55.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.746Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 56,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-55.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.749Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 57,
+            "context": "/tmp/firewall-test-writes/test-56.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.750Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 57,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-56.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.753Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 58,
+            "context": "/tmp/firewall-test-writes/test-57.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.754Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 58,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-57.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.757Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 59,
+            "context": "/tmp/firewall-test-writes/test-58.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.758Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 59,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-58.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.762Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 60,
+            "context": "/tmp/firewall-test-writes/test-59.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.763Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 60,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-59.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.767Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 61,
+            "context": "/tmp/firewall-test-writes/test-60.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:11.768Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 61,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-60.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:16.643Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 62,
+            "context": "/tmp/firewall-test-read.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:16.645Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 62,
+            "limit": 50,
+            "context": "/tmp/firewall-test-read.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        }
+      ]
+    },
+    "suspicious": [
+      {
+        "timestamp": "2025-12-04T12:32:11.721Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 50,
+          "context": "/tmp/firewall-test-writes/test-49.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.723Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 51,
+          "context": "/tmp/firewall-test-writes/test-50.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.725Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 51,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-50.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.728Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 52,
+          "context": "/tmp/firewall-test-writes/test-51.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.728Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 52,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-51.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.731Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 53,
+          "context": "/tmp/firewall-test-writes/test-52.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.732Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 53,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-52.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.735Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 54,
+          "context": "/tmp/firewall-test-writes/test-53.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.736Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 54,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-53.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.740Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 55,
+          "context": "/tmp/firewall-test-writes/test-54.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.741Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 55,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-54.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.744Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 56,
+          "context": "/tmp/firewall-test-writes/test-55.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.746Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 56,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-55.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.749Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 57,
+          "context": "/tmp/firewall-test-writes/test-56.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.750Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 57,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-56.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.753Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 58,
+          "context": "/tmp/firewall-test-writes/test-57.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.754Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 58,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-57.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.757Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 59,
+          "context": "/tmp/firewall-test-writes/test-58.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.758Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 59,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-58.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.762Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 60,
+          "context": "/tmp/firewall-test-writes/test-59.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.763Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 60,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-59.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.767Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 61,
+          "context": "/tmp/firewall-test-writes/test-60.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:11.768Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 61,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-60.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:16.643Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 62,
+          "context": "/tmp/firewall-test-read.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:16.645Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 62,
+          "limit": 50,
+          "context": "/tmp/firewall-test-read.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      }
+    ],
+    "assessment": {
+      "status": "suspicious",
+      "risk": "high",
+      "message": "25 suspicious operation(s) detected - HIGH RISK",
+      "issues": [
+        "THRESHOLD_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED"
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-12-04T12:48:21.523Z",
+    "package": "behavioral-threshold-test",
+    "metrics": {
+      "fileReads": 0,
+      "fileWrites": 62,
+      "networkRequests": 0,
+      "processSpawns": 0,
+      "suspiciousOperations": [
+        {
+          "timestamp": "2025-12-04T12:48:13.600Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 50,
+            "context": "/tmp/firewall-test-writes/test-49.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.603Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 51,
+            "context": "/tmp/firewall-test-writes/test-50.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.604Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 51,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-50.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.607Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 52,
+            "context": "/tmp/firewall-test-writes/test-51.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.607Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 52,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-51.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.609Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 53,
+            "context": "/tmp/firewall-test-writes/test-52.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.610Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 53,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-52.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.613Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 54,
+            "context": "/tmp/firewall-test-writes/test-53.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.614Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 54,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-53.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.617Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 55,
+            "context": "/tmp/firewall-test-writes/test-54.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.618Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 55,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-54.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.621Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 56,
+            "context": "/tmp/firewall-test-writes/test-55.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.622Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 56,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-55.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.623Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 57,
+            "context": "/tmp/firewall-test-writes/test-56.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.623Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 57,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-56.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.625Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 58,
+            "context": "/tmp/firewall-test-writes/test-57.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.625Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 58,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-57.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.628Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 59,
+            "context": "/tmp/firewall-test-writes/test-58.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.628Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 59,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-58.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.631Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 60,
+            "context": "/tmp/firewall-test-writes/test-59.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.631Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 60,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-59.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.633Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 61,
+            "context": "/tmp/firewall-test-writes/test-60.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:13.633Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 61,
+            "limit": 50,
+            "context": "/tmp/firewall-test-writes/test-60.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:18.524Z",
+          "package": "behavioral-threshold-test",
+          "type": "THRESHOLD_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 62,
+            "context": "/tmp/firewall-test-read.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:18.527Z",
+          "package": "behavioral-threshold-test",
+          "type": "HARD_LIMIT_EXCEEDED",
+          "details": {
+            "metric": "fileWrites",
+            "value": 62,
+            "limit": 50,
+            "context": "/tmp/firewall-test-read.txt"
+          },
+          "callStack": [
+            "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+          ]
+        }
+      ]
+    },
+    "suspicious": [
+      {
+        "timestamp": "2025-12-04T12:48:13.600Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 50,
+          "context": "/tmp/firewall-test-writes/test-49.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.603Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 51,
+          "context": "/tmp/firewall-test-writes/test-50.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.604Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 51,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-50.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.607Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 52,
+          "context": "/tmp/firewall-test-writes/test-51.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.607Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 52,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-51.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.609Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 53,
+          "context": "/tmp/firewall-test-writes/test-52.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.610Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 53,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-52.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.613Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 54,
+          "context": "/tmp/firewall-test-writes/test-53.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.614Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 54,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-53.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.617Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 55,
+          "context": "/tmp/firewall-test-writes/test-54.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.618Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 55,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-54.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.621Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 56,
+          "context": "/tmp/firewall-test-writes/test-55.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.622Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 56,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-55.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.623Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 57,
+          "context": "/tmp/firewall-test-writes/test-56.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.623Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 57,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-56.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.625Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 58,
+          "context": "/tmp/firewall-test-writes/test-57.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.625Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 58,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-57.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.628Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 59,
+          "context": "/tmp/firewall-test-writes/test-58.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.628Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 59,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-58.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.631Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 60,
+          "context": "/tmp/firewall-test-writes/test-59.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.631Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 60,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-59.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.633Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 61,
+          "context": "/tmp/firewall-test-writes/test-60.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:13.633Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 61,
+          "limit": 50,
+          "context": "/tmp/firewall-test-writes/test-60.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:18.524Z",
+        "package": "behavioral-threshold-test",
+        "type": "THRESHOLD_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 62,
+          "context": "/tmp/firewall-test-read.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkThreshold (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:214:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:162:10)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:18.527Z",
+        "package": "behavioral-threshold-test",
+        "type": "HARD_LIMIT_EXCEEDED",
+        "details": {
+          "metric": "fileWrites",
+          "value": 62,
+          "limit": 50,
+          "context": "/tmp/firewall-test-read.txt"
+        },
+        "callStack": [
+          "    at BehaviorMonitor.checkHardLimit (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:237:12)",
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:169:17)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)"
+        ]
+      }
+    ],
+    "assessment": {
+      "status": "suspicious",
+      "risk": "high",
+      "message": "25 suspicious operation(s) detected - HIGH RISK",
+      "issues": [
+        "THRESHOLD_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED",
+        "THRESHOLD_EXCEEDED",
+        "HARD_LIMIT_EXCEEDED"
+      ]
+    }
+  }
+]

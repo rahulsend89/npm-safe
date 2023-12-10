@@ -1,0 +1,308 @@
+[
+  {
+    "timestamp": "2025-12-04T12:26:11.088Z",
+    "package": "malicious-filesystem-test",
+    "metrics": {
+      "fileReads": 7,
+      "fileWrites": 5,
+      "networkRequests": 0,
+      "processSpawns": 0,
+      "suspiciousOperations": [
+        {
+          "timestamp": "2025-12-04T12:26:11.030Z",
+          "package": "malicious-filesystem-test",
+          "type": "SUSPICIOUS_FILE_WRITE",
+          "details": "/etc/evil.conf",
+          "callStack": [
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+            "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:87:6"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:26:11.043Z",
+          "package": "malicious-filesystem-test",
+          "type": "SUSPICIOUS_FILE_WRITE",
+          "details": "/Users/rahul/.ssh/authorized_keys",
+          "callStack": [
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.appendFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+            "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:93:6"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:26:11.061Z",
+          "package": "malicious-filesystem-test",
+          "type": "SUSPICIOUS_FILE_WRITE",
+          "details": "/Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/.github/workflows/malicious.yml",
+          "callStack": [
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+            "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:117:6"
+          ]
+        }
+      ]
+    },
+    "suspicious": [
+      {
+        "timestamp": "2025-12-04T12:26:11.030Z",
+        "package": "malicious-filesystem-test",
+        "type": "SUSPICIOUS_FILE_WRITE",
+        "details": "/etc/evil.conf",
+        "callStack": [
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+          "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:87:6"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:26:11.043Z",
+        "package": "malicious-filesystem-test",
+        "type": "SUSPICIOUS_FILE_WRITE",
+        "details": "/Users/rahul/.ssh/authorized_keys",
+        "callStack": [
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.appendFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+          "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:93:6"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:26:11.061Z",
+        "package": "malicious-filesystem-test",
+        "type": "SUSPICIOUS_FILE_WRITE",
+        "details": "/Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/.github/workflows/malicious.yml",
+        "callStack": [
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+          "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:117:6"
+        ]
+      }
+    ],
+    "assessment": {
+      "status": "suspicious",
+      "risk": "medium",
+      "message": "3 suspicious operation(s) detected",
+      "issues": [
+        "SUSPICIOUS_FILE_WRITE",
+        "SUSPICIOUS_FILE_WRITE",
+        "SUSPICIOUS_FILE_WRITE"
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-12-04T12:32:02.501Z",
+    "package": "malicious-filesystem-test",
+    "metrics": {
+      "fileReads": 7,
+      "fileWrites": 5,
+      "networkRequests": 0,
+      "processSpawns": 0,
+      "suspiciousOperations": [
+        {
+          "timestamp": "2025-12-04T12:32:02.429Z",
+          "package": "malicious-filesystem-test",
+          "type": "SUSPICIOUS_FILE_WRITE",
+          "details": "/etc/evil.conf",
+          "callStack": [
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+            "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:87:6"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:02.442Z",
+          "package": "malicious-filesystem-test",
+          "type": "SUSPICIOUS_FILE_WRITE",
+          "details": "/Users/rahul/.ssh/authorized_keys",
+          "callStack": [
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.appendFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+            "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:93:6"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:32:02.475Z",
+          "package": "malicious-filesystem-test",
+          "type": "SUSPICIOUS_FILE_WRITE",
+          "details": "/Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/.github/workflows/malicious.yml",
+          "callStack": [
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+            "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:117:6"
+          ]
+        }
+      ]
+    },
+    "suspicious": [
+      {
+        "timestamp": "2025-12-04T12:32:02.429Z",
+        "package": "malicious-filesystem-test",
+        "type": "SUSPICIOUS_FILE_WRITE",
+        "details": "/etc/evil.conf",
+        "callStack": [
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+          "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:87:6"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:02.442Z",
+        "package": "malicious-filesystem-test",
+        "type": "SUSPICIOUS_FILE_WRITE",
+        "details": "/Users/rahul/.ssh/authorized_keys",
+        "callStack": [
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.appendFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+          "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:93:6"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:32:02.475Z",
+        "package": "malicious-filesystem-test",
+        "type": "SUSPICIOUS_FILE_WRITE",
+        "details": "/Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/.github/workflows/malicious.yml",
+        "callStack": [
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+          "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:117:6"
+        ]
+      }
+    ],
+    "assessment": {
+      "status": "suspicious",
+      "risk": "medium",
+      "message": "3 suspicious operation(s) detected",
+      "issues": [
+        "SUSPICIOUS_FILE_WRITE",
+        "SUSPICIOUS_FILE_WRITE",
+        "SUSPICIOUS_FILE_WRITE"
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-12-04T12:48:08.531Z",
+    "package": "malicious-filesystem-test",
+    "metrics": {
+      "fileReads": 7,
+      "fileWrites": 5,
+      "networkRequests": 0,
+      "processSpawns": 0,
+      "suspiciousOperations": [
+        {
+          "timestamp": "2025-12-04T12:48:08.454Z",
+          "package": "malicious-filesystem-test",
+          "type": "SUSPICIOUS_FILE_WRITE",
+          "details": "/etc/evil.conf",
+          "callStack": [
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+            "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:87:6"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:08.465Z",
+          "package": "malicious-filesystem-test",
+          "type": "SUSPICIOUS_FILE_WRITE",
+          "details": "/Users/rahul/.ssh/authorized_keys",
+          "callStack": [
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.appendFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+            "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:93:6"
+          ]
+        },
+        {
+          "timestamp": "2025-12-04T12:48:08.503Z",
+          "package": "malicious-filesystem-test",
+          "type": "SUSPICIOUS_FILE_WRITE",
+          "details": "/Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/.github/workflows/malicious.yml",
+          "callStack": [
+            "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+            "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+            "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+            "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+            "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:117:6"
+          ]
+        }
+      ]
+    },
+    "suspicious": [
+      {
+        "timestamp": "2025-12-04T12:48:08.454Z",
+        "package": "malicious-filesystem-test",
+        "type": "SUSPICIOUS_FILE_WRITE",
+        "details": "/etc/evil.conf",
+        "callStack": [
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+          "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:87:6"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:08.465Z",
+        "package": "malicious-filesystem-test",
+        "type": "SUSPICIOUS_FILE_WRITE",
+        "details": "/Users/rahul/.ssh/authorized_keys",
+        "callStack": [
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.appendFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+          "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:93:6"
+        ]
+      },
+      {
+        "timestamp": "2025-12-04T12:48:08.503Z",
+        "package": "malicious-filesystem-test",
+        "type": "SUSPICIOUS_FILE_WRITE",
+        "details": "/Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/.github/workflows/malicious.yml",
+        "callStack": [
+          "    at BehaviorMonitor.trackFileWrite (/Users/rahul/Documents/openSource/node-firewall/lib/behavior-monitor.js:166:12)",
+          "    at FirewallCore.checkFileAccess (/Users/rahul/Documents/openSource/node-firewall/lib/firewall-core.js:290:30)",
+          "    at FileSystemInterceptor.checkAccess (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:462:26)",
+          "    at Object.writeFileSync (/Users/rahul/Documents/openSource/node-firewall/lib/fs-interceptor-v2.js:267:26)",
+          "    at /Users/rahul/Documents/openSource/node-firewall/test-packages/malicious-filesystem-app/index.js:117:6"
+        ]
+      }
+    ],
+    "assessment": {
+      "status": "suspicious",
+      "risk": "medium",
+      "message": "3 suspicious operation(s) detected",
+      "issues": [
+        "SUSPICIOUS_FILE_WRITE",
+        "SUSPICIOUS_FILE_WRITE",
+        "SUSPICIOUS_FILE_WRITE"
+      ]
+    }
+  }
+]
