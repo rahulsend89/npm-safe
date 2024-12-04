@@ -1,0 +1,83 @@
+# SECURITY: Exclude all test packages (contain malicious code examples)
+# These are attack patterns for testing and should NEVER be published
+test-packages/
+__tests__/
+coverage/
+*.test.js
+*.spec.js
+jest.config.js
+test-*.js
+test-*/**
+**/malicious-*
+**/malicious-*/**
+behavioral-threshold-app/
+credential-exfiltration-app/
+env-reader-malicious-package/
+malicious-express-app/
+malicious-filesystem-app/
+malicious-shell-command-app/
+
+# Development files
+.github/
+.vscode/
+.idea/
+*.code-workspace
+
+# Environment and secrets
+.env
+.env.*
+*.key
+*.pem
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+firewall-audit.jsonl
+firewall-report.json
+fs-firewall.log
+firewall-zero-trust.log
+firewall-zero-trust-report.json
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Build artifacts
+*.tgz
+node_modules/
+dist/
+build/
+.cache/
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation (keep README.md only)
+docs/
+*.draft.md
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+PUBLISHING*.md
+PUBLISH-*.md
+*-SETUP-COMPLETE.md
+CONFIG-COMPARISON.md
+ZERO-TRUST-GUIDE.md
+IMPROVEMENTS-COMPLETE.md
+
+# CI/CD
+.travis.yml
+.circleci/
+azure-pipelines.yml
+
+# Misc
+TODO.md
+NOTES.md
+scratch/
+temp/
+tmp/

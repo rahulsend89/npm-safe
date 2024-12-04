@@ -1,0 +1,53 @@
+[
+  {
+    "timestamp": "2025-12-02T18:14:03.679Z",
+    "package": "node-firewall",
+    "metrics": {
+      "fileReads": 2,
+      "fileWrites": 0,
+      "networkRequests": 0,
+      "processSpawns": 0,
+      "suspiciousOperations": []
+    },
+    "suspicious": [],
+    "assessment": {
+      "status": "clean",
+      "risk": "clean",
+      "message": "No suspicious behavior detected"
+    }
+  },
+  {
+    "timestamp": "2025-12-03T17:32:22.361Z",
+    "package": "node-firewall",
+    "metrics": {
+      "fileReads": 0,
+      "fileWrites": 0,
+      "networkRequests": 0,
+      "processSpawns": 0,
+      "suspiciousOperations": []
+    },
+    "suspicious": [],
+    "assessment": {
+      "status": "clean",
+      "risk": "clean",
+      "message": "No suspicious behavior detected"
+    }
+  },
+  {
+    "timestamp": "2025-12-04T11:31:31.017Z",
+    "package": "node-firewall",
+    "metrics": {
+      "fileReads": 3,
+      "fileWrites": 2,
+      "networkRequests": 0,
+      "processSpawns": 0,
+      "suspiciousOperations": []
+    },
+    "suspicious": [],
+    "assessment": {
+      "status": "clean",
+      "risk": "clean",
+      "message": "No suspicious behavior detected"
+    }
+  }
+]
