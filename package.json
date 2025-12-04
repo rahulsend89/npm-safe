@@ -1,11 +1,11 @@
 {
-  "name": "node-firewall",
+  "name": "npm-safe",
   "version": "2.0.0",
   "description": "Comprehensive security firewall for Node.js applications - Blocks 100% of supply chain attacks, credential exfiltration, and malicious code execution",
   "main": "index.js",
   "bin": {
-    "node-firewall": "./bin/node-firewall",
     "npm-safe": "./bin/npm-safe",
+    "npm-safe-install": "./bin/npm-safe",
     "firewall-config": "./bin/firewall-config"
   },
   "scripts": {
@@ -43,12 +43,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rahulsend89/node-firewall.git"
+    "url": "https://github.com/rahulsend89/npm-safe.git"
   },
   "bugs": {
-    "url": "https://github.com/rahulsend89/node-firewall/issues"
+    "url": "https://github.com/rahulsend89/npm-safe/issues"
   },
-  "homepage": "https://github.com/rahulsend89/node-firewall#readme",
+  "homepage": "https://github.com/rahulsend89/npm-safe#readme",
   "engines": {
     "node": ">=16.0.0"
   },

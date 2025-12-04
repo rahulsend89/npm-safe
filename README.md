@@ -1,6 +1,6 @@
-# Node Firewall
+# npm-safe
 
-Runtime security firewall for Node.js - Blocks supply chain attacks, credential theft, and malicious code execution.
+Secure npm package installer with runtime firewall protection - Blocks supply chain attacks, credential theft, and malicious code execution.
 
 ## Features
 
@@ -15,7 +15,7 @@ Runtime security firewall for Node.js - Blocks supply chain attacks, credential 
 ## Installation
 
 ```bash
-npm install -g node-firewall
+npm install -g npm-safe
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ npm-safe start
 ### Option 2: Protect Existing Code
 
 ```bash
-NODE_FIREWALL=1 node --require node-firewall app.js
+NODE_FIREWALL=1 node --require npm-safe app.js
 ```
 
 ## Configuration

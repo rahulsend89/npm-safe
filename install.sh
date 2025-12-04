@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# Node Firewall Installation Script
+# npm-safe Installation Script
 # Robust installation with detection, update, and uninstall options
 
 set -e
 
 FIREWALL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BIN_DIR="$FIREWALL_DIR/bin"
-MARKER_START="# Node Firewall - START"
-MARKER_END="# Node Firewall - END"
+MARKER_START="# npm-safe - START"
+MARKER_END="# npm-safe - END"
 
 # Colors for output
 RED='\033[0;31m'

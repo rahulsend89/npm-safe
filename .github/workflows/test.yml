@@ -37,8 +37,8 @@ jobs:
       - name: Test package installation
         run: |
           npm pack
-          npm install -g ./node-firewall-*.tgz
-          node-firewall --version || echo 'CLI test completed'
+          npm install -g ./npm-safe-*.tgz
+          npm-safe --version || echo 'CLI test completed'
   
   security-scan:
     runs-on: ubuntu-latest

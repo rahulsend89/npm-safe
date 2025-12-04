@@ -42,19 +42,19 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ steps.get_version.outputs.VERSION }}
           body: |
-            ##  Node Firewall v${{ steps.get_version.outputs.VERSION }}
+            ##  npm-safe v${{ steps.get_version.outputs.VERSION }}
             
             ### What's Changed
             ${{ steps.changelog.outputs.CHANGELOG }}
             
             ### Installation
             ```bash
-            npm install node-firewall@${{ steps.get_version.outputs.VERSION }}
+            npm install -g npm-safe@${{ steps.get_version.outputs.VERSION }}
             ```
             
             ### Quick Start
             ```bash
-            NODE_FIREWALL=1 node app.js
+            npm-safe install package-name
             ```
             
             See [README.md](https://github.com/${{ github.repository }}/blob/main/README.md) for full documentation.
