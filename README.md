@@ -15,7 +15,7 @@ Secure npm package installer with runtime firewall protection - Blocks supply ch
 ## Installation
 
 ```bash
-npm install -g npm-safe
+npm install -g @rahulmalik/npm-safe
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ npm-safe start
 ### Option 2: Protect Existing Code
 
 ```bash
-NODE_FIREWALL=1 node --require npm-safe app.js
+NODE_FIREWALL=1 node --require @rahulmalik/npm-safe app.js
 ```
 
 ## Configuration

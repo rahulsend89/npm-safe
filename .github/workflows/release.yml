@@ -49,7 +49,7 @@ jobs:
             
             ### Installation
             ```bash
-            npm install -g npm-safe@${{ steps.get_version.outputs.VERSION }}
+            npm install -g @rahulmalik/npm-safe@${{ steps.get_version.outputs.VERSION }}
             ```
             
             ### Quick Start

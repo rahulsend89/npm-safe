@@ -60,7 +60,7 @@ jobs:
           fi
           
           # Check package size (should be small without tests)
-          SIZE=$(wc -c < npm-safe-*.tgz)
+          SIZE=$(wc -c < rahulmalik-npm-safe-*.tgz)
           if [ "$SIZE" -gt 500000 ]; then
             echo 'WARNING: Package is unusually large ('${SIZE}' bytes)'
             echo 'This might indicate test files are included.'
