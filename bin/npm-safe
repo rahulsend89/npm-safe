@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+
+/**
+ * npm-safe: Secure npm wrapper
+ * Preloads firewall protections BEFORE any package code executes
+ */
+
+const path = require('path');
+const { spawn } = require('child_process');
+
+// Determine firewall lib directory
+const FIREWALL_LIB = path.join(__dirname, '..', 'lib');
+const FS_INTERCEPTOR = path.join(FIREWALL_LIB, 'fs-interceptor-v2.js');
+const CHILD_PROCESS_INTERCEPTOR = path.join(FIREWALL_LIB, 'child-process-interceptor.js');
+
+// Enable firewall
+process.env.NODE_FIREWALL = '1';
+
+// Preload all interceptors
+if (!process.env.NODE_OPTIONS) {
+  process.env.NODE_OPTIONS = '';
+}
+process.env.NODE_OPTIONS += ` -r ${FS_INTERCEPTOR} -r ${CHILD_PROCESS_INTERCEPTOR}`;
+
+// Find npm executable
+const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+
+// Get npm command and args
+const args = process.argv.slice(2);
+
+console.log('╔════════════════════════════════════════════════════╗');
+console.log('║  🛡️  npm-safe: Protected npm execution             ║');
+console.log('╚════════════════════════════════════════════════════╝');
+console.log(`Command: npm ${args.join(' ')}`);
+console.log('─────────────────────────────────────────────────────\n');
+
+// Spawn npm with protections
+const npmProcess = spawn(npm, args, {
+  stdio: 'inherit',
+  env: process.env,
+  shell: true
+});
+
+npmProcess.on('close', (code) => {
+  console.log('\n─────────────────────────────────────────────────────');
+  console.log(`npm-safe: Process exited with code ${code}`);
+  process.exit(code);
+});
+
+npmProcess.on('error', (err) => {
+  console.error('npm-safe: Error executing npm:', err.message);
+  process.exit(1);
+});

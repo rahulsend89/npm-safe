@@ -1,0 +1,9 @@
+{
+  "name": "malicious-shell-command-test",
+  "version": "1.0.0",
+  "description": "Test shell command injection attacks",
+  "main": "index.js",
+  "scripts": {
+    "test": "FS_FIREWALL_INTERACTIVE=false node index.js"
+  }
+}

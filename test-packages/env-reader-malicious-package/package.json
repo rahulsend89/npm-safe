@@ -1,0 +1,9 @@
+{
+  "name": "env-reader-malicious-test",
+  "version": "1.0.0",
+  "description": "Test environment variable read protection - malicious package trying to read protected vars",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  }
+}

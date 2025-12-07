@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+const { spawn } = require('child_process');
+const path = require('path');
+
+const FIREWALL_LIB = path.join(__dirname, '..', 'lib', 'fs-interceptor.js');
+
+const args = process.argv.slice(2);
+
+if (args.length === 0) {
+  console.log('Usage: node-firewall <script.js> [args...]');
+  console.log('');
+  console.log('Environment Variables:');
+  console.log('  FS_FIREWALL_INTERACTIVE=false    - Disable interactive prompts (deny by default)');
+  console.log('  FS_FIREWALL_DEFAULT_ALLOW=true   - Allow all access by default (logging only)');
+  console.log('  FS_FIREWALL_LOG=<path>           - Custom log file path');
+  console.log('  FS_FIREWALL_RULES=<path>         - Custom rules file path');
+  process.exit(1);
+}
+
+const nodeArgs = ['-r', FIREWALL_LIB, ...args];
+
+const child = spawn(process.execPath, nodeArgs, {
+  stdio: 'inherit',
+  env: { ...process.env }
+});
+
+child.on('exit', (code) => {
+  process.exit(code);
+});

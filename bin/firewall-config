@@ -1,0 +1,303 @@
+#!/usr/bin/env node
+
+/**
+ * firewall-config: Configuration management CLI
+ * Manage firewall settings, exceptions, and view reports
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+// Handle case where cwd doesn't exist
+let currentDir;
+try {
+  currentDir = process.cwd();
+} catch (e) {
+  console.error('❌ Current directory does not exist.');
+  console.error('   Please navigate to a valid directory (e.g., cd ~) and try again.');
+  process.exit(1);
+}
+
+const CONFIG_FILE = path.join(currentDir, '.firewall-config.json');
+
+function loadConfig() {
+  try {
+    return JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'));
+  } catch (e) {
+    console.error('❌ Config file not found. Run: firewall-config init');
+    process.exit(1);
+  }
+}
+
+function saveConfig(config) {
+  fs.writeFileSync(CONFIG_FILE, JSON.stringify(config, null, 2));
+  console.log('✓ Configuration saved');
+}
+
+function init() {
+  if (fs.existsSync(CONFIG_FILE)) {
+    console.log('Config file already exists at:', CONFIG_FILE);
+    console.log('   Use --force to overwrite');
+    return;
+  }
+  
+  // Copy default config
+  const defaultConfig = path.join(__dirname, '..', '.firewall-config.json');
+  fs.copyFileSync(defaultConfig, CONFIG_FILE);
+  console.log('✓ Created .firewall-config.json');
+  console.log('  Edit this file to customize firewall behavior');
+}
+
+function addException(packageName, type, value, reason) {
+  const config = loadConfig();
+  
+  if (!config.exceptions) config.exceptions = { modules: {} };
+  if (!config.exceptions.modules) config.exceptions.modules = {};
+  if (!config.exceptions.modules[packageName]) {
+    config.exceptions.modules[packageName] = { reason: reason || 'Manual exception' };
+  }
+  
+  const exception = config.exceptions.modules[packageName];
+  
+  switch (type) {
+    case 'filesystem':
+    case 'fs':
+      exception.allowFilesystem = exception.allowFilesystem || [];
+      if (!exception.allowFilesystem.includes(value)) {
+        exception.allowFilesystem.push(value);
+        console.log(`✓ Added filesystem exception: ${packageName} → ${value}`);
+      } else {
+        console.log('  Exception already exists');
+      }
+      break;
+      
+    case 'network':
+    case 'net':
+      exception.allowNetwork = exception.allowNetwork || [];
+      if (!exception.allowNetwork.includes(value)) {
+        exception.allowNetwork.push(value);
+        console.log(`✓ Added network exception: ${packageName} → ${value}`);
+      } else {
+        console.log('  Exception already exists');
+      }
+      break;
+      
+    case 'command':
+    case 'cmd':
+      exception.allowCommands = exception.allowCommands || [];
+      if (!exception.allowCommands.includes(value)) {
+        exception.allowCommands.push(value);
+        console.log(`✓ Added command exception: ${packageName} → ${value}`);
+      } else {
+        console.log('  Exception already exists');
+      }
+      break;
+      
+    default:
+      console.error(`❌ Unknown exception type: ${type}`);
+      console.error('   Valid types: filesystem, network, command');
+      return;
+  }
+  
+  exception.addedAt = new Date().toISOString();
+  saveConfig(config);
+}
+
+function removeException(packageName) {
+  const config = loadConfig();
+  
+  if (config.exceptions?.modules?.[packageName]) {
+    delete config.exceptions.modules[packageName];
+    console.log(`✓ Removed all exceptions for ${packageName}`);
+    saveConfig(config);
+  } else {
+    console.log(`  No exceptions found for ${packageName}`);
+  }
+}
+
+function listExceptions() {
+  const config = loadConfig();
+  const modules = config.exceptions?.modules || {};
+  
+  if (Object.keys(modules).length === 0) {
+    console.log('No exceptions configured');
+    return;
+  }
+  
+  console.log('\nConfigured Exceptions:\n');
+  
+  for (const [pkg, exception] of Object.entries(modules)) {
+    console.log(`📦 ${pkg}`);
+    if (exception.allowFilesystem) {
+      console.log(`   Filesystem: ${exception.allowFilesystem.join(', ')}`);
+    }
+    if (exception.allowNetwork) {
+      console.log(`   Network: ${exception.allowNetwork.join(', ')}`);
+    }
+    if (exception.allowCommands) {
+      console.log(`   Commands: ${exception.allowCommands.join(', ')}`);
+    }
+    if (exception.reason) {
+      console.log(`   Reason: ${exception.reason}`);
+    }
+    console.log('');
+  }
+}
+
+function showStatus() {
+  const config = loadConfig();
+  
+  console.log('\n╔════════════════════════════════════════════════════╗');
+  console.log('║  Firewall Configuration Status                     ║');
+  console.log('╚════════════════════════════════════════════════════╝\n');
+  
+  console.log(`Enabled:          ${config.mode?.enabled ? '✓ Yes' : '✗ No'}`);
+  console.log(`Interactive:      ${config.mode?.interactive ? '✓ Yes' : '✗ No'}`);
+  console.log(`Strict Mode:      ${config.mode?.strictMode ? 'Yes' : '✓ No'}`);
+  console.log(`Alert Only:       ${config.mode?.alertOnly ? '✓ Yes' : '✗ No'}`);
+  console.log(`\nNetwork Monitor:  ${config.network?.enabled ? '✓ Enabled' : '✗ Disabled'}`);
+  console.log(`Behavior Monitor: ${config.behavioral?.monitorLifecycleScripts ? '✓ Enabled' : '✗ Disabled'}`);
+  
+  const excCount = Object.keys(config.exceptions?.modules || {}).length;
+  const trustedCount = (config.trustedModules || []).length;
+  
+  console.log(`\nExceptions:       ${excCount} module(s)`);
+  console.log(`Trusted Modules:  ${trustedCount} module(s)`);
+  console.log('─────────────────────────────────────────────────────\n');
+}
+
+function viewReport() {
+  const reportFile = path.join(process.cwd(), 'firewall-report.json');
+  
+  if (!fs.existsSync(reportFile)) {
+    console.log('No reports found. Reports are generated after package operations.');
+    return;
+  }
+  
+  const reports = JSON.parse(fs.readFileSync(reportFile, 'utf8'));
+  
+  if (reports.length === 0) {
+    console.log('No reports available');
+    return;
+  }
+  
+  console.log(`\nBehavior Reports (${reports.length} total)\n`);
+  
+  // Show last 5 reports
+  const recent = reports.slice(-5);
+  
+  recent.forEach((report, idx) => {
+    console.log(`Report #${reports.length - recent.length + idx + 1}`);
+    console.log(`  Package: ${report.package || 'unknown'}`);
+    console.log(`  Assessment: ${report.assessment?.status || 'unknown'}`);
+    console.log(`  Risk: ${report.assessment?.risk || 'unknown'}`);
+    
+    if (report.suspicious && report.suspicious.length > 0) {
+      console.log(`  Suspicious: ${report.suspicious.length} operation(s)`);
+    }
+    
+    console.log('');
+  });
+}
+
+function printHelp() {
+  console.log(`
+╔════════════════════════════════════════════════════╗
+║  Firewall Configuration CLI                        ║
+╚════════════════════════════════════════════════════╝
+
+USAGE:
+  firewall-config <command> [options]
+
+COMMANDS:
+  init                    Initialize config file in current directory
+  status                  Show current configuration status
+  
+  add-exception <pkg> <type> <value> [reason]
+                          Add exception for a package
+                          Types: filesystem|network|command
+                          
+                          Examples:
+                          add-exception aws-sdk filesystem ~/.aws/
+                          add-exception my-pkg network api.example.com
+                          add-exception build-tool command make
+  
+  remove-exception <pkg>  Remove all exceptions for a package
+  list                    List all configured exceptions
+  report                  View behavior analysis reports
+  
+OPTIONS:
+  --force                 Force overwrite (with init)
+  --help, -h              Show this help
+
+EXAMPLES:
+  # Initialize in new project
+  firewall-config init
+  
+  # Allow aws-sdk to read credentials
+  firewall-config add-exception aws-sdk filesystem ~/.aws/
+  
+  # Allow custom package to call API
+  firewall-config add-exception my-api network api.myservice.com
+  
+  # View what packages did
+  firewall-config report
+  
+  # Check current settings
+  firewall-config status
+`);
+}
+
+// Main CLI logic
+const args = process.argv.slice(2);
+const command = args[0];
+
+switch (command) {
+  case 'init':
+    init();
+    break;
+    
+  case 'status':
+    showStatus();
+    break;
+    
+  case 'add-exception':
+  case 'add':
+    if (args.length < 4) {
+      console.error('Usage: firewall-config add-exception <package> <type> <value> [reason]');
+      process.exit(1);
+    }
+    addException(args[1], args[2], args[3], args[4]);
+    break;
+    
+  case 'remove-exception':
+  case 'remove':
+    if (args.length < 2) {
+      console.error('Usage: firewall-config remove-exception <package>');
+      process.exit(1);
+    }
+    removeException(args[1]);
+    break;
+    
+  case 'list':
+  case 'ls':
+    listExceptions();
+    break;
+    
+  case 'report':
+  case 'reports':
+    viewReport();
+    break;
+    
+  case 'help':
+  case '--help':
+  case '-h':
+  case undefined:
+    printHelp();
+    break;
+    
+  default:
+    console.error(`Unknown command: ${command}`);
+    console.error('Run: firewall-config --help');
+    process.exit(1);
+}

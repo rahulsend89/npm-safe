@@ -1,0 +1,9 @@
+{
+  "name": "behavioral-threshold-test",
+  "version": "1.0.0",
+  "description": "Test behavioral monitoring thresholds and rate limits",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  }
+}
