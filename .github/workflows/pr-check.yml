@@ -1,0 +1,31 @@
+name: PR Quick Check
+
+on:
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  quick-check:
+    name: Quick Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Quick integration test
+        run: node test/integration-test.js
+      
+      - name: Check file structure
+        run: |
+          test -f lib/firewall-core.js && \
+          test -f lib/config-loader.js && \
+          test -f lib/init.mjs && \
+          test -f lib/legacy-loader.mjs && \
+          test -f bin/npm-safe && \
+          echo "✓ All required files present"

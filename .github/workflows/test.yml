@@ -1,64 +1,55 @@
-name: Test & Lint
+name: Test
 
 on:
   push:
-    branches: [main, master, develop]
+    branches: [main, master]
   pull_request:
-    branches: [main, master, develop]
+    branches: [main, master]
 
 jobs:
   test:
+    name: Test on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
-        node-version: [18.x, 20.x, 22.x]
+        os: [ubuntu-latest, macos-latest, windows-latest]
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      - name: Setup Node.js ${{ matrix.node-version }}
+      # Test with Node.js 18.14 (skip on Windows)
+      - name: Setup Node.js 18.14
+        if: matrix.os != 'windows-latest'
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '18.14'
       
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Run unit tests
-        run: echo 'Unit tests skipped - TODO fix failing tests'
-        continue-on-error: true
-      
-      - name: Run integration tests
-        run: npm run test:integration || echo 'Some integration tests failed'
-        continue-on-error: true
-      
-      - name: Test package installation
+      - name: Test with Node.js 18.14
+        if: matrix.os != 'windows-latest'
         run: |
-          npm pack
-          npm install -g ./node-firewall-*.tgz
-          node-firewall --version || echo 'CLI test completed'
-  
-  security-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+          node --version
+          node test/integration-test.js
       
-      - name: Setup Node.js
+      # Test with Node.js 20.11
+      - name: Setup Node.js 20.11
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '20.11'
       
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Run npm audit
-        run: npm audit --audit-level=moderate
-        continue-on-error: true
-      
-      - name: Check for known vulnerabilities
+      - name: Test with Node.js 20.11
         run: |
-          echo "Checking package security..."
-          npm ls --depth=0
+          node --version
+          node test/integration-test.js
+      
+      # Test with Node.js 22 (latest)
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      
+      - name: Test with Node.js 22
+        run: |
+          node --version
+          node test/integration-test.js

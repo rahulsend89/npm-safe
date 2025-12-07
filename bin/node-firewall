@@ -3,7 +3,10 @@
 const { spawn } = require('child_process');
 const path = require('path');
 
-const FIREWALL_LIB = path.join(__dirname, '..', 'lib', 'fs-interceptor.js');
+const FIREWALL_LIB = path.join(__dirname, '..', 'lib');
+const FS_INTERCEPTOR = path.join(FIREWALL_LIB, 'fs-interceptor-v2.js');
+const CHILD_PROCESS_INTERCEPTOR = path.join(FIREWALL_LIB, 'child-process-interceptor.js');
+const INIT_ESM = path.join(FIREWALL_LIB, 'init.mjs');
 
 const args = process.argv.slice(2);
 
@@ -11,14 +14,26 @@ if (args.length === 0) {
   console.log('Usage: node-firewall <script.js> [args...]');
   console.log('');
   console.log('Environment Variables:');
-  console.log('  FS_FIREWALL_INTERACTIVE=false    - Disable interactive prompts (deny by default)');
-  console.log('  FS_FIREWALL_DEFAULT_ALLOW=true   - Allow all access by default (logging only)');
-  console.log('  FS_FIREWALL_LOG=<path>           - Custom log file path');
-  console.log('  FS_FIREWALL_RULES=<path>         - Custom rules file path');
+  console.log('  NODE_FIREWALL=1                  - Enable firewall (default)');
+  console.log('  NODE_FIREWALL_STRICT=1           - Enable strict mode');
   process.exit(1);
 }
 
-const nodeArgs = ['-r', FIREWALL_LIB, ...args];
+// Enable firewall
+process.env.NODE_FIREWALL = '1';
+
+// Check Node.js version for ESM loader support (>= 20.6.0)
+const [major, minor] = process.versions.node.split('.').map(Number);
+const supportsEsmLoader = major > 20 || (major === 20 && minor >= 6);
+
+let nodeArgs;
+if (supportsEsmLoader) {
+  // Use --import for modern Node.js
+  nodeArgs = ['--import', INIT_ESM, ...args];
+} else {
+  // Legacy fallback
+  nodeArgs = ['-r', FS_INTERCEPTOR, '-r', CHILD_PROCESS_INTERCEPTOR, ...args];
+}
 
 const child = spawn(process.execPath, nodeArgs, {
   stdio: 'inherit',

@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# Node Firewall Installation Script
+# npm-safe Installation Script
 # Robust installation with detection, update, and uninstall options
 
 set -e
 
 FIREWALL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BIN_DIR="$FIREWALL_DIR/bin"
-MARKER_START="# Node Firewall - START"
-MARKER_END="# Node Firewall - END"
+MARKER_START="# npm-safe - START"
+MARKER_END="# npm-safe - END"
 
 # Colors for output
 RED='\033[0;31m'
@@ -154,16 +154,16 @@ install() {
   
   echo "Next steps:"
   echo "  1. Reload your shell:"
-  echo "     ${GREEN}source ~/.zshrc${NC}    (for zsh)"
-  echo "     ${GREEN}source ~/.bashrc${NC}   (for bash)"
+  echo "     source ~/.zshrc    (for zsh)"
+  echo "     source ~/.bashrc   (for bash)"
   echo ""
   echo "  2. Initialize firewall config:"
-  echo "     ${GREEN}firewall-config init${NC}"
+  echo "     firewall-config init"
   echo ""
   echo "  3. Install packages safely:"
-  echo "     ${GREEN}npm-safe install${NC}"
+  echo "     npm-safe install"
   echo ""
-  echo "To uninstall: ${GREEN}./install.sh --uninstall${NC}"
+  echo "To uninstall: ./install.sh --uninstall"
   echo ""
 }
 

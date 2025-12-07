@@ -1,6 +1,6 @@
-# Node Firewall
+# npm-safe
 
-Runtime security firewall for Node.js - Blocks supply chain attacks, credential theft, and malicious code execution.
+Secure npm package installer with runtime firewall protection - Blocks supply chain attacks, credential theft, and malicious code execution.
 
 ## Features
 
@@ -14,9 +14,38 @@ Runtime security firewall for Node.js - Blocks supply chain attacks, credential 
 
 ## Installation
 
+### Quick Install (All Platforms)
+
 ```bash
-npm install -g node-firewall
+npm install -g @rahulmalik/npm-safe
 ```
+
+### Manual Installation
+
+#### Linux/Mac
+```bash
+git clone https://github.com/rahulsend89/npm-safe.git
+cd npm-safe
+./install.sh
+```
+
+#### Windows (PowerShell)
+```powershell
+git clone https://github.com/rahulsend89/npm-safe.git
+cd npm-safe
+.\install.ps1
+```
+
+#### Windows (Command Prompt)
+```cmd
+git clone https://github.com/rahulsend89/npm-safe.git
+cd npm-safe
+install.bat
+```
+
+**Uninstall:**
+- Linux/Mac: `./install.sh --uninstall`
+- Windows: `.\install.ps1 -Uninstall` or `install.bat -Uninstall`
 
 ## Usage
 
@@ -36,8 +65,21 @@ npm-safe start
 ### Option 2: Protect Existing Code
 
 ```bash
-NODE_FIREWALL=1 node --require node-firewall app.js
+NODE_FIREWALL=1 node --require @rahulmalik/npm-safe app.js
 ```
+
+### Option 3: Node.js 20+ (ESM Support)
+
+For modern Node.js versions (20.6.0+), use the `--import` flag for earlier interception and ESM support:
+
+```bash
+NODE_FIREWALL=1 node --import @rahulmalik/npm-safe/lib/init.mjs app.js
+```
+
+This enables:
+- Protection for both ESM (`.mjs`) and CommonJS modules
+- Early interception of malicious imports via `module.register()`
+- Full firewall capabilities before application code runs
 
 ## Configuration
 

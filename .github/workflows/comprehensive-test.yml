@@ -1,0 +1,44 @@
+name: Comprehensive Tests (Manual)
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Run monthly on 1st at 00:00 UTC (reduced from weekly)
+    - cron: '0 0 1 * *'
+
+jobs:
+  test-node-versions:
+    name: Node ${{ matrix.node-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: ['18.14', '20.11', '22']
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      - name: Display environment
+        run: |
+          echo "Node version: $(node --version)"
+          echo "npm version: $(npm --version)"
+          echo "OS: ${{ matrix.os }}"
+      
+      - name: Run integration tests
+        run: npm test
+      
+      - name: Test version detection
+        run: npm run test:version-detection
+      
+      - name: Test loader selection
+        run: npm run test:loader-selection
+      
+      - name: Test all components
+        run: npm run test:all

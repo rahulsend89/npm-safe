@@ -8,31 +8,71 @@
 const path = require('path');
 const { spawn } = require('child_process');
 
+// Enable firewall
+process.env.NODE_FIREWALL = '1';
+
+// Get npm command and args early to detect install mode
+const args = process.argv.slice(2);
+const npmCommand = args[0] || '';
+
+// INSTALL MODE: Set environment variable so firewall components can detect it
+// This is needed because npm_command is only set AFTER npm starts
+if (npmCommand === 'install' || npmCommand === 'i' || npmCommand === 'ci' || npmCommand === 'add') {
+  process.env.FIREWALL_INSTALL_MODE = '1';
+}
+
 // Determine firewall lib directory
 const FIREWALL_LIB = path.join(__dirname, '..', 'lib');
 const FS_INTERCEPTOR = path.join(FIREWALL_LIB, 'fs-interceptor-v2.js');
 const CHILD_PROCESS_INTERCEPTOR = path.join(FIREWALL_LIB, 'child-process-interceptor.js');
+const INIT_ESM = path.join(FIREWALL_LIB, 'init.mjs');
+const LEGACY_LOADER = path.join(FIREWALL_LIB, 'legacy-loader.mjs');
 
-// Enable firewall
-process.env.NODE_FIREWALL = '1';
+// Helper: Convert Windows paths to file:// URLs for ESM loaders
+function toFileURL(filePath) {
+  if (process.platform === 'win32') {
+    // Convert Windows path to file:// URL
+    // D:\path\to\file.mjs -> file:///D:/path/to/file.mjs
+    const { pathToFileURL } = require('url');
+    return pathToFileURL(filePath).href;
+  }
+  return filePath;
+}
 
 // Preload all interceptors
 if (!process.env.NODE_OPTIONS) {
   process.env.NODE_OPTIONS = '';
 }
-process.env.NODE_OPTIONS += ` -r ${FS_INTERCEPTOR} -r ${CHILD_PROCESS_INTERCEPTOR}`;
+
+// Check Node.js version for loader API support
+const [major, minor] = process.versions.node.split('.').map(Number);
+const supportsImport = major > 20 || (major === 20 && minor >= 6);
+const supportsLoader = major > 16 || (major === 16 && minor >= 12);
+
+if (supportsImport) {
+  // Use --import for Node.js 20.6+ (stable module.register API)
+  process.env.NODE_OPTIONS += ` --import ${toFileURL(INIT_ESM)}`;
+} else if (supportsLoader) {
+  // Use --loader for Node.js 16.12 - 20.5 (experimental loader API)
+  // Note: --experimental-loader was renamed to --loader in Node.js 18.19+
+  const loaderFlag = (major >= 19 || (major === 18 && minor >= 19)) ? '--loader' : '--experimental-loader';
+  process.env.NODE_OPTIONS += ` ${loaderFlag} ${toFileURL(LEGACY_LOADER)} -r ${FS_INTERCEPTOR} -r ${CHILD_PROCESS_INTERCEPTOR}`;
+} else {
+  // Fallback for Node.js < 16.12 (no ESM loader support)
+  // Only use require hooks (CJS modules only)
+  process.env.NODE_OPTIONS += ` -r ${FS_INTERCEPTOR} -r ${CHILD_PROCESS_INTERCEPTOR}`;
+  console.warn('\n  Warning: Node.js version < 16.12 detected');
+  console.warn('   ESM module protection is limited. Consider upgrading to Node.js 16.12+\n');
+}
 
 // Find npm executable
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 
-// Get npm command and args
-const args = process.argv.slice(2);
-
-console.log('╔════════════════════════════════════════════════════╗');
-console.log('║  🛡️  npm-safe: Protected npm execution             ║');
-console.log('╚════════════════════════════════════════════════════╝');
+console.log('======================================================');
+console.log('   npm-safe: Protected npm execution');
+console.log('======================================================');
 console.log(`Command: npm ${args.join(' ')}`);
-console.log('─────────────────────────────────────────────────────\n');
+console.log('------------------------------------------------------\n');
 
 // Spawn npm with protections
 const npmProcess = spawn(npm, args, {
@@ -42,7 +82,7 @@ const npmProcess = spawn(npm, args, {
 });
 
 npmProcess.on('close', (code) => {
-  console.log('\n─────────────────────────────────────────────────────');
+  console.log('\n------------------------------------------------------');
   console.log(`npm-safe: Process exited with code ${code}`);
   process.exit(code);
 });
