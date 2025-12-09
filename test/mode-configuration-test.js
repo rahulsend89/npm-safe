@@ -186,7 +186,8 @@ async function runTests() {
     { enabled: true, strictMode: true },
     `const fs = require('fs');
      const path = require('path');
-     const tmpFile = path.join(process.cwd(), 'test-strict-allowed.txt');
+     const os = require('os');
+     const tmpFile = path.join(os.tmpdir(), 'test-strict-allowed.txt');
      try {
        fs.writeFileSync(tmpFile, 'test');
        fs.unlinkSync(tmpFile);
@@ -272,7 +273,8 @@ async function runTests() {
     { enabled: true, strictMode: true, alertOnly: true },
     `const fs = require('fs');
      const path = require('path');
-     const testFile = path.join(process.cwd(), 'test-combo.txt');
+     const os = require('os');
+     const testFile = path.join(os.tmpdir(), 'test-combo.txt');
      try {
        fs.writeFileSync(testFile, 'test');
        fs.unlinkSync(testFile);
