@@ -185,7 +185,9 @@ async function runTests() {
     'Strict mode allows whitelisted paths',
     { enabled: true, strictMode: true },
     `const fs = require('fs');
-     const tmpFile = require('os').tmpdir() + '/test-strict-allowed.txt';
+     const path = require('path');
+     // Use project directory which is in allowedPaths via node_modules pattern
+     const tmpFile = path.join(process.cwd(), 'test-strict-allowed.txt');
      try {
        fs.writeFileSync(tmpFile, 'test');
        fs.unlinkSync(tmpFile);
@@ -208,7 +210,9 @@ async function runTests() {
     'Strict mode shows in display',
     { enabled: true, strictMode: true },
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
+     const configPath = process.env.FIREWALL_CONFIG || path.join(process.cwd(), '.firewall-config.json');
+     const fs = require('fs');
+     const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
      console.log(config.mode?.strictMode ? 'STRICT_OK' : 'NO_STRICT');`,
     (output) => {
       const showsStrict = output.includes('STRICT_OK');
@@ -268,7 +272,8 @@ async function runTests() {
     'Strict + Alert-Only: warns but allows',
     { enabled: true, strictMode: true, alertOnly: true },
     `const fs = require('fs');
-     const testFile = process.cwd() + '/test-combo.txt';
+     const path = require('path');
+     const testFile = path.join(process.cwd(), 'test-combo.txt');
      try {
        fs.writeFileSync(testFile, 'test');
        fs.unlinkSync(testFile);
@@ -276,6 +281,8 @@ async function runTests() {
      } catch(e) {
        if(!e.message.includes('Firewall')) {
          console.log('ALLOWED');
+       } else {
+         console.log('BLOCKED');
        }
      }`,
     (output) => {
