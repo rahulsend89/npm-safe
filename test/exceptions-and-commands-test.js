@@ -8,6 +8,9 @@ const path = require('path');
 const fs = require('fs');
 const os = require('os');
 
+// Helper to get config-loader with absolute path for child processes
+const getConfigCode = `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();`;
+
 console.log('======================================================');
 console.log('   Module Exceptions & Commands Tests (E2E Pattern)');
 console.log('======================================================\n');
@@ -34,7 +37,7 @@ async function runTests() {
 
   await runTest(
     'Exceptions config loaded',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      console.log(config.exceptions ? 'HAS_EXCEPTIONS' : 'NO_EXCEPTIONS');`,
     (output) => {
       const hasExceptions = output.includes('HAS_EXCEPTIONS');
@@ -47,7 +50,7 @@ async function runTests() {
 
   await runTest(
     'Example-package exception exists',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const hasExample = config.exceptions?.modules?.['example-package'];
      console.log(hasExample ? 'HAS_EXAMPLE' : 'NO_EXAMPLE');`,
     (output) => {
@@ -61,7 +64,7 @@ async function runTests() {
 
   await runTest(
     'Exception has allowFilesystem',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const ex = config.exceptions?.modules?.['example-package'];
      console.log(ex?.allowFilesystem ? 'HAS_FILESYSTEM' : 'NO_FILESYSTEM');`,
     (output) => {
@@ -75,7 +78,7 @@ async function runTests() {
 
   await runTest(
     'Exception has allowNetwork',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const ex = config.exceptions?.modules?.['example-package'];
      console.log(ex?.allowNetwork ? 'HAS_NETWORK' : 'NO_NETWORK');`,
     (output) => {
@@ -89,7 +92,7 @@ async function runTests() {
 
   await runTest(
     'Exception has allowCommands',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const ex = config.exceptions?.modules?.['example-package'];
      console.log(ex?.allowCommands ? 'HAS_COMMANDS' : 'NO_COMMANDS');`,
     (output) => {
@@ -103,7 +106,7 @@ async function runTests() {
 
   await runTest(
     'Exception has reason field',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const ex = config.exceptions?.modules?.['example-package'];
      console.log(ex?.reason ? 'HAS_REASON' : 'NO_REASON');`,
     (output) => {
@@ -122,7 +125,7 @@ async function runTests() {
 
   await runTest(
     'Network mode is "block"',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      console.log(config.network?.mode === 'block' ? 'BLOCK_MODE' : 'OTHER_MODE');`,
     (output) => {
       const isBlock = output.includes('BLOCK_MODE');
@@ -135,7 +138,7 @@ async function runTests() {
 
   await runTest(
     'Network enabled',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      console.log(config.network?.enabled ? 'ENABLED' : 'DISABLED');`,
     (output) => {
       const isEnabled = output.includes('ENABLED');
@@ -278,7 +281,7 @@ async function runTests() {
 
   await runTest(
     'Config has 9 allowed commands',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const count = config.commands?.allowedCommands?.length || 0;
      console.log(count === 9 ? 'HAS_9' : 'WRONG_COUNT_' + count);`,
     (output) => {
@@ -292,7 +295,7 @@ async function runTests() {
 
   await runTest(
     'npm in allowed list',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const hasNpm = config.commands?.allowedCommands?.includes('npm');
      console.log(hasNpm ? 'HAS_NPM' : 'NO_NPM');`,
     (output) => {
@@ -306,7 +309,7 @@ async function runTests() {
 
   await runTest(
     'node in allowed list',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const hasNode = config.commands?.allowedCommands?.includes('node');
      console.log(hasNode ? 'HAS_NODE' : 'NO_NODE');`,
     (output) => {
@@ -320,7 +323,7 @@ async function runTests() {
 
   await runTest(
     'git in allowed list',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const hasGit = config.commands?.allowedCommands?.includes('git');
      console.log(hasGit ? 'HAS_GIT' : 'NO_GIT');`,
     (output) => {
@@ -339,7 +342,7 @@ async function runTests() {
 
   await runTest(
     'Config has 20 trusted modules',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const count = config.trustedModules?.length || 0;
      console.log(count === 20 ? 'HAS_20' : 'WRONG_COUNT_' + count);`,
     (output) => {
@@ -353,7 +356,7 @@ async function runTests() {
 
   await runTest(
     'npm in trusted list',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const hasNpm = config.trustedModules?.includes('npm');
      console.log(hasNpm ? 'HAS_NPM' : 'NO_NPM');`,
     (output) => {
@@ -367,7 +370,7 @@ async function runTests() {
 
   await runTest(
     '@aws-sdk in trusted list',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const hasAws = config.trustedModules?.includes('@aws-sdk');
      console.log(hasAws ? 'HAS_AWS' : 'NO_AWS');`,
     (output) => {
@@ -381,7 +384,7 @@ async function runTests() {
 
   await runTest(
     'prisma in trusted list',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const hasPrisma = config.trustedModules?.includes('prisma');
      console.log(hasPrisma ? 'HAS_PRISMA' : 'NO_PRISMA');`,
     (output) => {
@@ -395,7 +398,7 @@ async function runTests() {
 
   await runTest(
     'mongoose in trusted list',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const hasMongoose = config.trustedModules?.includes('mongoose');
      console.log(hasMongoose ? 'HAS_MONGOOSE' : 'NO_MONGOOSE');`,
     (output) => {
@@ -414,7 +417,8 @@ async function runTests() {
 
   await runTest(
     'isTrustedModule() works for npm',
-    `const { FirewallCore } = require('../lib/firewall-core');
+    `const path = require('path');
+     const { FirewallCore } = require(path.join(process.cwd(), 'lib/firewall-core'));
      const firewall = new FirewallCore();
      console.log(firewall.isTrustedModule('npm') ? 'TRUSTED' : 'NOT_TRUSTED');`,
     (output) => {
@@ -428,7 +432,8 @@ async function runTests() {
 
   await runTest(
     'isTrustedModule() works for @aws-sdk/client-s3',
-    `const { FirewallCore } = require('../lib/firewall-core');
+    `const path = require('path');
+     const { FirewallCore } = require(path.join(process.cwd(), 'lib/firewall-core'));
      const firewall = new FirewallCore();
      console.log(firewall.isTrustedModule('@aws-sdk/client-s3') ? 'TRUSTED' : 'NOT_TRUSTED');`,
     (output) => {
@@ -442,7 +447,8 @@ async function runTests() {
 
   await runTest(
     'isTrustedModule() rejects unknown modules',
-    `const { FirewallCore } = require('../lib/firewall-core');
+    `const path = require('path');
+     const { FirewallCore } = require(path.join(process.cwd(), 'lib/firewall-core'));
      const firewall = new FirewallCore();
      console.log(firewall.isTrustedModule('evil-package') ? 'TRUSTED' : 'NOT_TRUSTED');`,
     (output) => {
