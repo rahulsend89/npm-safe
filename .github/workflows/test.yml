@@ -36,6 +36,9 @@ jobs:
           echo "OS: ${{ matrix.os }}"
           echo "Platform: ${{ runner.os }}"
       
+      - name: Install dependencies
+        run: npm install
+      
       - name: Run E2E Real-World Tests
         run: npm run test:e2e
       
