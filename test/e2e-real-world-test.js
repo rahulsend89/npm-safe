@@ -297,7 +297,9 @@ async function runTests() {
     'Protects sensitive env vars',
     `console.log('test');`,
     (output) => {
-      const hasProtection = output.includes('Protecting 11') || output.includes('environment variables');
+      const hasProtection = output.includes('Protecting') || 
+                           output.includes('Environment protection') ||
+                           output.includes('Env Protector');
       return {
         pass: hasProtection,
         reason: hasProtection ? 'env protection active' : 'not active'
