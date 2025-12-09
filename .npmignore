@@ -2,6 +2,7 @@
 # These are attack patterns for testing and should NEVER be published
 test-packages/
 __tests__/
+test/
 coverage/
 *.test.js
 *.spec.js
