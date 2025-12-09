@@ -72,6 +72,7 @@ function runFirewallTest(name, code, expectation, options = {}) {
       .replace(/\n/g, ' ')       // Remove newlines
       .replace(/\s+/g, ' ')      // Collapse whitespace
       .trim();
+    
     args.push('-e', normalizedCode);
 
     const proc = spawn('node', args, {
@@ -89,7 +90,9 @@ function runFirewallTest(name, code, expectation, options = {}) {
     let stderr = '';
     let resolved = false;
     
-    proc.stdout.on('data', (data) => { output += data.toString(); });
+    proc.stdout.on('data', (data) => { 
+      output += data.toString(); 
+    });
     proc.stderr.on('data', (data) => { 
       stderr += data.toString();
       output += data.toString();
@@ -107,10 +110,6 @@ function runFirewallTest(name, code, expectation, options = {}) {
           resolve(true);
         } else {
           console.log(`✗ (${result.reason})`);
-          if (options.debug || (isWindows && stderr)) {
-            if (stderr) console.log(`  Stderr: ${stderr.substring(0, 200)}`);
-            if (result.debug) console.log(`  Debug: ${result.debug.substring(0, 150)}`);
-          }
           resolve(false);
         }
       } catch (e) {

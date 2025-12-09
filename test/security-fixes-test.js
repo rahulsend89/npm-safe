@@ -171,7 +171,8 @@ async function runTests() {
     (output) => ({
       pass: output.includes('BYPASS_BLOCKED') || output.includes('blocked'),
       reason: output.includes('BYPASS_BLOCKED') ? 'binding blocked' : 'binding allowed'
-    })
+    }),
+    { env: { NODE_FIREWALL_FORTRESS: '1' } }
   );
 
   await runSecurityTest(

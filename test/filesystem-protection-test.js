@@ -249,7 +249,8 @@ async function runTests() {
   await runFilesystemTest(
     'Block /.github/workflows/ write',
     `const fs = require('fs');
-     try { fs.writeFileSync(process.cwd() + '/.github/workflows/malicious.yml', 'test'); console.log('NOT_BLOCKED'); }
+     const path = require('path');
+     try { fs.writeFileSync(path.join(process.cwd(), '.github', 'workflows', 'malicious.yml'), 'test'); console.log('NOT_BLOCKED'); }
      catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
@@ -314,7 +315,9 @@ async function runTests() {
   await runFilesystemTest(
     'Block .sh write',
     `const fs = require('fs');
-     try { fs.writeFileSync('${tmpDir}/test.sh', '#!/bin/bash'); console.log('NOT_BLOCKED'); }
+     const path = require('path');
+     const os = require('os');
+     try { fs.writeFileSync(path.join(os.tmpdir(), 'test.sh'), '#!/bin/bash'); console.log('NOT_BLOCKED'); }
      catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
@@ -322,7 +325,9 @@ async function runTests() {
   await runFilesystemTest(
     'Block .command write',
     `const fs = require('fs');
-     try { fs.writeFileSync('${tmpDir}/test.command', '#!/bin/bash'); console.log('NOT_BLOCKED'); }
+     const path = require('path');
+     const os = require('os');
+     try { fs.writeFileSync(path.join(os.tmpdir(), 'test.command'), '#!/bin/bash'); console.log('NOT_BLOCKED'); }
      catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
@@ -330,7 +335,9 @@ async function runTests() {
   await runFilesystemTest(
     'Block .bash write',
     `const fs = require('fs');
-     try { fs.writeFileSync('${tmpDir}/test.bash', '#!/bin/bash'); console.log('NOT_BLOCKED'); }
+     const path = require('path');
+     const os = require('os');
+     try { fs.writeFileSync(path.join(os.tmpdir(), 'test.bash'), '#!/bin/bash'); console.log('NOT_BLOCKED'); }
      catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
@@ -338,7 +345,9 @@ async function runTests() {
   await runFilesystemTest(
     'Block .zsh write',
     `const fs = require('fs');
-     try { fs.writeFileSync('${tmpDir}/test.zsh', '#!/bin/zsh'); console.log('NOT_BLOCKED'); }
+     const path = require('path');
+     const os = require('os');
+     try { fs.writeFileSync(path.join(os.tmpdir(), 'test.zsh'), '#!/bin/zsh'); console.log('NOT_BLOCKED'); }
      catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
@@ -346,7 +355,9 @@ async function runTests() {
   await runFilesystemTest(
     'Block .py write',
     `const fs = require('fs');
-     try { fs.writeFileSync('${tmpDir}/test.py', 'print("test")'); console.log('NOT_BLOCKED'); }
+     const path = require('path');
+     const os = require('os');
+     try { fs.writeFileSync(path.join(os.tmpdir(), 'test.py'), 'print("test")'); console.log('NOT_BLOCKED'); }
      catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
@@ -354,7 +365,9 @@ async function runTests() {
   await runFilesystemTest(
     'Block .rb write',
     `const fs = require('fs');
-     try { fs.writeFileSync('${tmpDir}/test.rb', 'puts "test"'); console.log('NOT_BLOCKED'); }
+     const path = require('path');
+     const os = require('os');
+     try { fs.writeFileSync(path.join(os.tmpdir(), 'test.rb'), 'puts "test"'); console.log('NOT_BLOCKED'); }
      catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
@@ -362,7 +375,9 @@ async function runTests() {
   await runFilesystemTest(
     'Block .pl write',
     `const fs = require('fs');
-     try { fs.writeFileSync('${tmpDir}/test.pl', 'print "test"'); console.log('NOT_BLOCKED'); }
+     const path = require('path');
+     const os = require('os');
+     try { fs.writeFileSync(path.join(os.tmpdir(), 'test.pl'), 'print "test"'); console.log('NOT_BLOCKED'); }
      catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
@@ -370,7 +385,9 @@ async function runTests() {
   await runFilesystemTest(
     'Block .php write',
     `const fs = require('fs');
-     try { fs.writeFileSync('${tmpDir}/test.php', '<?php echo "test"; ?>'); console.log('NOT_BLOCKED'); }
+     const path = require('path');
+     const os = require('os');
+     try { fs.writeFileSync(path.join(os.tmpdir(), 'test.php'), '<?php echo "test"; ?>'); console.log('NOT_BLOCKED'); }
      catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
@@ -383,7 +400,9 @@ async function runTests() {
   await runFilesystemTest(
     'Allow /tmp/ write',
     `const fs = require('fs');
-     const file = '${tmpDir}/firewall-test-allowed.txt';
+     const path = require('path');
+     const os = require('os');
+     const file = path.join(os.tmpdir(), 'firewall-test-allowed.txt');
      fs.writeFileSync(file, 'test');
      fs.unlinkSync(file);
      console.log('ALLOWED');`,
