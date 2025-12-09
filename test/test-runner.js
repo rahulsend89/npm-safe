@@ -110,6 +110,10 @@ function runFirewallTest(name, code, expectation, options = {}) {
           resolve(true);
         } else {
           console.log(`✗ (${result.reason})`);
+          // Always print output for failed tests to help debug
+          if (output) {
+            console.log('[OUTPUT]', output.substring(0, 1000));
+          }
           resolve(false);
         }
       } catch (e) {
