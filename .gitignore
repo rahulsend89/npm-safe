@@ -2,3 +2,11 @@ node_modules/
 *.log
 .DS_Store
 coverage/
+
+# Firewall logs and reports (generated at runtime)
+firewall-audit.jsonl
+firewall-report.json
+fs-firewall.log
+**/firewall-report.json
+**/firewall-audit.jsonl
+**/fs-firewall.log
