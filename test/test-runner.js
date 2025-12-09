@@ -73,7 +73,7 @@ function runFirewallTest(name, code, expectation, options = {}) {
         ...(options.env || {})
       },
       cwd: options.cwd || projectRoot,
-      timeout: options.timeout || 3000,
+      timeout: options.timeout || (isWindows ? 5000 : 3000), // Longer timeout on Windows
       shell: isWindows // Use shell on Windows for better compatibility
     });
 
@@ -99,8 +99,9 @@ function runFirewallTest(name, code, expectation, options = {}) {
           resolve(true);
         } else {
           console.log(`✗ (${result.reason})`);
-          if (options.debug && result.debug) {
-            console.log(`  Debug: ${result.debug.substring(0, 150)}`);
+          if (options.debug || (isWindows && stderr)) {
+            if (stderr) console.log(`  Stderr: ${stderr.substring(0, 200)}`);
+            if (result.debug) console.log(`  Debug: ${result.debug.substring(0, 150)}`);
           }
           resolve(false);
         }

@@ -98,15 +98,21 @@ async function runTests() {
   if (await runFirewallTest(
     'Shows mode configuration',
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
-     console.log(config.mode ? 'MODE_OK' : 'MODE_FAIL');`,
+     try {
+       const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
+       console.log(config.mode ? 'MODE_OK' : 'MODE_FAIL');
+     } catch(e) {
+       console.log('ERROR: ' + e.message);
+     }`,
     (output) => {
       const hasMode = output.includes('MODE_OK');
       return {
         pass: hasMode,
-        reason: hasMode ? 'mode configured' : 'mode missing'
+        reason: hasMode ? 'mode configured' : 'mode missing',
+        debug: output
       };
-    }
+    },
+    { debug: true }
   )) passed++; else failed++;
 
   // ============================================
