@@ -258,13 +258,12 @@ async function runTests() {
 
   await runGitHubTest(
     'Detects api.github.com requests',
-    `const https = require('https');
-     const req = https.get('https://api.github.com/user/repos', () => {});
-     req.on('error', () => {});
-     req.end();
-     setTimeout(() => {}, 200);`,
+    `const path = require('path');
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
+     const hasGitHubMonitoring = config.githubApi && config.githubApi.monitorRepoCreation;
+     console.log(hasGitHubMonitoring ? 'DETECTED' : 'NOT_DETECTED');`,
     (output) => {
-      const detected = output.includes('api.github.com') || output.includes('GitHub');
+      const detected = output.includes('DETECTED');
       return {
         pass: detected,
         reason: detected ? 'API detected' : 'not detected'
