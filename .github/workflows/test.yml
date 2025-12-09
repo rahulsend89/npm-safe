@@ -36,11 +36,10 @@ jobs:
           echo "OS: ${{ matrix.os }}"
           echo "Platform: ${{ runner.os }}"
       
-      - name: Install dependencies
-        run: npm install
-      
       - name: Run E2E Real-World Tests
         run: npm run test:e2e
+        env:
+          FIREWALL_VERBOSE: '1'
       
       - name: Run Integration Tests
         run: npm run test:integration
@@ -56,6 +55,8 @@ jobs:
       
       - name: Run Environment Tests
         run: npm run test:environment
+        env:
+          FIREWALL_VERBOSE: '1'
       
       - name: Run Behavioral Tests
         run: npm run test:behavioral
