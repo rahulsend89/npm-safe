@@ -127,7 +127,7 @@ async function runTests() {
     'Alert-only shows in mode display',
     { enabled: true, alertOnly: true },
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
      console.log(config.mode?.alertOnly ? 'ALERT_MODE_OK' : 'NO_ALERT_MODE');`,
     (output) => {
       const showsAlertMode = output.includes('ALERT_MODE_OK');
@@ -142,7 +142,7 @@ async function runTests() {
     'Alert-only logs but continues',
     { enabled: true, alertOnly: true },
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
      console.log(config.mode?.alertOnly ? 'CONTINUED' : 'STOPPED');`,
     (output) => {
       const continued = output.includes('CONTINUED');
@@ -208,7 +208,7 @@ async function runTests() {
     'Strict mode shows in display',
     { enabled: true, strictMode: true },
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
      console.log(config.mode?.strictMode ? 'STRICT_OK' : 'NO_STRICT');`,
     (output) => {
       const showsStrict = output.includes('STRICT_OK');
@@ -380,7 +380,7 @@ async function runTests() {
     'Mode configuration displayed on init',
     { enabled: true },
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
      console.log(config.mode ? 'MODE_OK' : 'NO_MODE');`,
     (output) => {
       const hasMode = output.includes('MODE_OK');
@@ -395,7 +395,7 @@ async function runTests() {
     'Strict status displayed',
     { enabled: true, strictMode: false },
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
      console.log(config.mode?.hasOwnProperty('strictMode') ? 'STRICT_STATUS_OK' : 'NO_STATUS');`,
     (output) => {
       const hasStrict = output.includes('STRICT_STATUS_OK');

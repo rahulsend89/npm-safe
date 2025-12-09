@@ -98,7 +98,7 @@ async function runTests() {
   if (await runFirewallTest(
     'Shows mode configuration',
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
      console.log(config.mode ? 'MODE_OK' : 'MODE_FAIL');`,
     (output) => {
       const hasMode = output.includes('MODE_OK');
@@ -301,7 +301,7 @@ async function runTests() {
   if (await runFirewallTest(
     'Protects sensitive env vars',
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
      const protectedVars = config.environment?.protectedVariables || [];
      console.log(protectedVars.length > 0 ? 'ENV_PROTECTED' : 'ENV_NOT_PROTECTED');`,
     (output) => {
@@ -335,7 +335,7 @@ async function runTests() {
   if (await runFirewallTest(
     'Enforcement mode active',
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
      console.log(config.mode?.enabled !== false ? 'ENFORCEMENT_OK' : 'ENFORCEMENT_FAIL');`,
     (output) => {
       const hasEnforcement = output.includes('ENFORCEMENT_OK');
@@ -349,7 +349,7 @@ async function runTests() {
   if (await runFirewallTest(
     'Strict mode configurable',
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
      console.log(config.mode?.hasOwnProperty('strictMode') ? 'STRICT_OK' : 'STRICT_FAIL');`,
     (output) => {
       const hasStrict = output.includes('STRICT_OK');
@@ -368,7 +368,7 @@ async function runTests() {
   if (await runFirewallTest(
     'Behavior monitoring active',
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
      console.log(config.mode?.enabled ? 'MONITORING_OK' : 'MONITORING_FAIL');`,
     (output) => {
       const hasMonitoring = output.includes('MONITORING_OK');

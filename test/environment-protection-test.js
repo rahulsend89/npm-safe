@@ -37,7 +37,7 @@ async function runTests() {
     'Environment protector active',
     {},
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
      console.log(config.environment ? 'PROTECTOR_OK' : 'PROTECTOR_FAIL');`,
     (output) => {
       const hasProtector = output.includes('PROTECTOR_OK');
@@ -52,7 +52,7 @@ async function runTests() {
     'Protected variables count displayed',
     {},
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
      const count = config.environment?.protectedVariables?.length || 0;
      console.log(count > 0 ? 'COUNT_OK' : 'COUNT_FAIL');`,
     (output) => {
@@ -68,7 +68,7 @@ async function runTests() {
     'Shows 11 protected variables',
     {},
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
      const count = config.environment?.protectedVariables?.length || 0;
      console.log(count === 11 ? 'HAS_11' : 'WRONG_COUNT');`,
     (output) => {
@@ -292,7 +292,7 @@ async function runTests() {
     'Config has allowTrustedModulesAccess',
     {},
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
      console.log(config.environment?.allowTrustedModulesAccess ? 'ENABLED' : 'DISABLED');`,
     (output) => {
       const isEnabled = output.includes('ENABLED');
@@ -307,7 +307,7 @@ async function runTests() {
     'Trusted modules list loaded',
     {},
     `const path = require('path');
-     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
      const hasTrusted = config.trustedModules && config.trustedModules.length > 0;
      console.log(hasTrusted ? 'HAS_TRUSTED' : 'NO_TRUSTED');`,
     (output) => {

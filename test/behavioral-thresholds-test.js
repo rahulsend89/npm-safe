@@ -29,7 +29,7 @@ async function runTests() {
   // Test behavioral config exists and has expected properties
   const configTest = `
     const path = require('path');
-    const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+    const config = require(path.join(process.cwd(), 'lib', 'config-loader')).load();
     const behavioral = config.behavioral || {};
     
     // Check all expected behavioral properties
