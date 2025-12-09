@@ -64,16 +64,19 @@ function runFirewallTest(name, code, expectation, options = {}) {
       args.push('-r', childProcessInterceptorPath);
     }
     
-    // Normalize code for Windows: remove newlines and extra whitespace
-    // Windows shell with -e flag doesn't handle multi-line strings well
-    // Also remove single-line comments to prevent them from commenting out the rest
-    const normalizedCode = code
-      .replace(/\/\/.*$/gm, '') // Remove single-line comments
-      .replace(/\n/g, ' ')       // Remove newlines
-      .replace(/\s+/g, ' ')      // Collapse whitespace
-      .trim();
+    // Only normalize code for Windows with old --loader API (Node 18)
+    // The --import API (Node 20+) handles multi-line code correctly
+    let finalCode = code;
+    if (isWindows && !supportsImport) {
+      // Remove single-line comments and collapse to single line for old loader
+      finalCode = code
+        .replace(/\/\/.*$/gm, '') // Remove single-line comments
+        .replace(/\n/g, ' ')       // Remove newlines
+        .replace(/\s+/g, ' ')      // Collapse whitespace
+        .trim();
+    }
     
-    args.push('-e', normalizedCode);
+    args.push('-e', finalCode);
 
     const proc = spawn('node', args, {
       env: { 
@@ -83,7 +86,7 @@ function runFirewallTest(name, code, expectation, options = {}) {
       },
       cwd: options.cwd || projectRoot,
       timeout: options.timeout || (isWindows ? 5000 : 3000), // Longer timeout on Windows
-      shell: isWindows // Use shell on Windows for better compatibility
+      shell: false // Don't use shell - it breaks multi-line code on Windows
     });
 
     let output = '';
@@ -110,12 +113,6 @@ function runFirewallTest(name, code, expectation, options = {}) {
           resolve(true);
         } else {
           console.log(`✗ (${result.reason})`);
-          // Always print output for failed tests to help debug
-          if (output) {
-            // Print last 2000 chars to see the actual test output (not just firewall init)
-            const start = Math.max(0, output.length - 2000);
-            console.log('[OUTPUT]', output.substring(start));
-          }
           resolve(false);
         }
       } catch (e) {

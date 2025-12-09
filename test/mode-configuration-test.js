@@ -188,14 +188,11 @@ async function runTests() {
      const path = require('path');
      const os = require('os');
      const tmpFile = path.join(os.tmpdir(), 'test-strict-allowed.txt');
-     console.log('[DEBUG] tmpdir:', os.tmpdir());
-     console.log('[DEBUG] tmpFile:', tmpFile);
      try {
        fs.writeFileSync(tmpFile, 'test');
        fs.unlinkSync(tmpFile);
        console.log('ALLOWED');
      } catch(e) {
-       console.log('[DEBUG] Error:', e.message);
        if(!e.message.includes('Firewall')) {
          console.log('ALLOWED');
        }
