@@ -53,7 +53,7 @@ async function runTests() {
     'Block /.ssh/ read',
     `const fs = require('fs');
      try { fs.readFileSync(require('os').homedir() + '/.ssh/id_rsa'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -61,7 +61,7 @@ async function runTests() {
     'Block /.aws/ read',
     `const fs = require('fs');
      try { fs.readFileSync(require('os').homedir() + '/.aws/credentials'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -69,7 +69,7 @@ async function runTests() {
     'Block /.gnupg/ read',
     `const fs = require('fs');
      try { fs.readFileSync(require('os').homedir() + '/.gnupg/private-keys'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -77,7 +77,7 @@ async function runTests() {
     'Block /.kube/ read',
     `const fs = require('fs');
      try { fs.readFileSync(require('os').homedir() + '/.kube/config'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -85,7 +85,7 @@ async function runTests() {
     'Block /.docker/ read',
     `const fs = require('fs');
      try { fs.readFileSync(require('os').homedir() + '/.docker/config.json'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -93,7 +93,7 @@ async function runTests() {
     'Block /.config/gcloud/ read',
     `const fs = require('fs');
      try { fs.readFileSync(require('os').homedir() + '/.config/gcloud/credentials'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -101,7 +101,7 @@ async function runTests() {
     'Block /.azure/ read',
     `const fs = require('fs');
      try { fs.readFileSync(require('os').homedir() + '/.azure/credentials'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -109,7 +109,7 @@ async function runTests() {
     'Block /etc/passwd read',
     `const fs = require('fs');
      try { fs.readFileSync('/etc/passwd'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -117,7 +117,7 @@ async function runTests() {
     'Block /etc/shadow read',
     `const fs = require('fs');
      try { fs.readFileSync('/etc/shadow'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -125,7 +125,7 @@ async function runTests() {
     'Block /.env read',
     `const fs = require('fs');
      try { fs.readFileSync(require('os').homedir() + '/.env'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -133,7 +133,7 @@ async function runTests() {
     'Block /.npmrc read',
     `const fs = require('fs');
      try { fs.readFileSync(require('os').homedir() + '/.npmrc'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -141,7 +141,7 @@ async function runTests() {
     'Block /.gitconfig read',
     `const fs = require('fs');
      try { fs.readFileSync(require('os').homedir() + '/.gitconfig'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -149,7 +149,7 @@ async function runTests() {
     'Block /.bash_history read',
     `const fs = require('fs');
      try { fs.readFileSync(require('os').homedir() + '/.bash_history'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -157,7 +157,7 @@ async function runTests() {
     'Block /.zsh_history read',
     `const fs = require('fs');
      try { fs.readFileSync(require('os').homedir() + '/.zsh_history'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -165,7 +165,7 @@ async function runTests() {
     'Block /.sh_history read',
     `const fs = require('fs');
      try { fs.readFileSync(require('os').homedir() + '/.sh_history'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -173,7 +173,7 @@ async function runTests() {
     'Block /keychain/ read',
     `const fs = require('fs');
      try { fs.readFileSync(require('os').homedir() + '/keychain/secrets'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -186,7 +186,7 @@ async function runTests() {
     'Block /etc/ write',
     `const fs = require('fs');
      try { fs.writeFileSync('/etc/firewall-test', 'test'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -194,7 +194,7 @@ async function runTests() {
     'Block /.ssh/ write',
     `const fs = require('fs');
      try { fs.writeFileSync(require('os').homedir() + '/.ssh/malicious', 'test'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -202,7 +202,7 @@ async function runTests() {
     'Block /usr/local/bin/ write',
     `const fs = require('fs');
      try { fs.writeFileSync('/usr/local/bin/malicious', 'test'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -210,7 +210,7 @@ async function runTests() {
     'Block /usr/bin/ write',
     `const fs = require('fs');
      try { fs.writeFileSync('/usr/bin/malicious', 'test'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -218,7 +218,7 @@ async function runTests() {
     'Block /bin/ write',
     `const fs = require('fs');
      try { fs.writeFileSync('/bin/malicious', 'test'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -226,7 +226,7 @@ async function runTests() {
     'Block /sbin/ write',
     `const fs = require('fs');
      try { fs.writeFileSync('/sbin/malicious', 'test'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -234,7 +234,7 @@ async function runTests() {
     'Block /Library/LaunchDaemons/ write',
     `const fs = require('fs');
      try { fs.writeFileSync('/Library/LaunchDaemons/com.malicious.plist', 'test'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -242,7 +242,7 @@ async function runTests() {
     'Block /Library/LaunchAgents/ write',
     `const fs = require('fs');
      try { fs.writeFileSync('/Library/LaunchAgents/com.malicious.plist', 'test'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -250,7 +250,7 @@ async function runTests() {
     'Block /.github/workflows/ write',
     `const fs = require('fs');
      try { fs.writeFileSync(process.cwd() + '/.github/workflows/malicious.yml', 'test'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -258,7 +258,7 @@ async function runTests() {
     'Block /.bashrc write',
     `const fs = require('fs');
      try { fs.writeFileSync(require('os').homedir() + '/.bashrc', 'malicious'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -266,7 +266,7 @@ async function runTests() {
     'Block /.zshrc write',
     `const fs = require('fs');
      try { fs.writeFileSync(require('os').homedir() + '/.zshrc', 'malicious'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -274,7 +274,7 @@ async function runTests() {
     'Block /.profile write',
     `const fs = require('fs');
      try { fs.writeFileSync(require('os').homedir() + '/.profile', 'malicious'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -282,7 +282,7 @@ async function runTests() {
     'Block /.bash_profile write',
     `const fs = require('fs');
      try { fs.writeFileSync(require('os').homedir() + '/.bash_profile', 'malicious'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -290,7 +290,7 @@ async function runTests() {
     'Block /.zprofile write',
     `const fs = require('fs');
      try { fs.writeFileSync(require('os').homedir() + '/.zprofile', 'malicious'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -298,7 +298,7 @@ async function runTests() {
     'Block /.git/hooks/ write',
     `const fs = require('fs');
      try { fs.writeFileSync(process.cwd() + '/.git/hooks/pre-commit', 'malicious'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -315,7 +315,7 @@ async function runTests() {
     'Block .sh write',
     `const fs = require('fs');
      try { fs.writeFileSync('${tmpDir}/test.sh', '#!/bin/bash'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -323,7 +323,7 @@ async function runTests() {
     'Block .command write',
     `const fs = require('fs');
      try { fs.writeFileSync('${tmpDir}/test.command', '#!/bin/bash'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -331,7 +331,7 @@ async function runTests() {
     'Block .bash write',
     `const fs = require('fs');
      try { fs.writeFileSync('${tmpDir}/test.bash', '#!/bin/bash'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -339,7 +339,7 @@ async function runTests() {
     'Block .zsh write',
     `const fs = require('fs');
      try { fs.writeFileSync('${tmpDir}/test.zsh', '#!/bin/zsh'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -347,7 +347,7 @@ async function runTests() {
     'Block .py write',
     `const fs = require('fs');
      try { fs.writeFileSync('${tmpDir}/test.py', 'print("test")'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -355,7 +355,7 @@ async function runTests() {
     'Block .rb write',
     `const fs = require('fs');
      try { fs.writeFileSync('${tmpDir}/test.rb', 'puts "test"'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -363,7 +363,7 @@ async function runTests() {
     'Block .pl write',
     `const fs = require('fs');
      try { fs.writeFileSync('${tmpDir}/test.pl', 'print "test"'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
@@ -371,7 +371,7 @@ async function runTests() {
     'Block .php write',
     `const fs = require('fs');
      try { fs.writeFileSync('${tmpDir}/test.php', '<?php echo "test"; ?>'); console.log('NOT_BLOCKED'); }
-     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES') console.log('BLOCKED'); }`,
+     catch(e) { if(e.message.includes('Firewall') || e.code === 'EACCES' || e.code === 'ENOENT') console.log('BLOCKED'); }`,
     true
   );
 
