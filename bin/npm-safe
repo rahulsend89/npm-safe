@@ -20,8 +20,13 @@ if (fortressIndex !== -1) {
 }
 
 // Enable firewall (FORTRESS mode if requested)
+// SECURITY: Fortress mode includes base firewall protections
+// Both NODE_FIREWALL and NODE_FIREWALL_FORTRESS must be set so that:
+// 1. Base interceptors (fs-interceptor-v2.js, child-process-interceptor.js) activate via NODE_FIREWALL
+// 2. Fortress hardening (firewall-hardening-fortress.js) activates via NODE_FIREWALL_FORTRESS
 if (fortressMode) {
-  process.env.NODE_FIREWALL_FORTRESS = '1';
+  process.env.NODE_FIREWALL = '1'; // Enable base firewall interceptors
+  process.env.NODE_FIREWALL_FORTRESS = '1'; // Enable fortress hardening
   console.log('FORTRESS MODE ENABLED - Maximum Protection Active');
 } else {
   process.env.NODE_FIREWALL = '1';

@@ -19,6 +19,13 @@ const INIT_COMPLETE = Symbol.for('node.firewall.init.complete');
 // Check if firewall is enabled
 const enabled = process.env.NODE_FIREWALL === '1' || process.env.NODE_FIREWALL_FORTRESS === '1';
 
+// SECURITY: Fortress mode requires base firewall to be active
+// When NODE_FIREWALL_FORTRESS is set, also set NODE_FIREWALL so that
+// base interceptors (fs-interceptor-v2.js, child-process-interceptor.js) activate
+if (process.env.NODE_FIREWALL_FORTRESS === '1' && process.env.NODE_FIREWALL !== '1') {
+  process.env.NODE_FIREWALL = '1';
+}
+
 if (enabled && !global[INIT_COMPLETE]) {
   // Mark as started (if not already)
   if (!global[INIT_STARTED]) {

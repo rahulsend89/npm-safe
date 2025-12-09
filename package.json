@@ -32,7 +32,8 @@
     "test:loader-selection": "node test/loader-selection-test.js",
     "test:output-protection": "node test/output-file-protection-test.js",
     "test:fortress": "node test/fortress-mode-test.js",
-    "test:all": "npm run test:e2e && npm run test:security-fixes && npm run test:integration && npm run test:config && npm run test:filesystem && npm run test:network && npm run test:environment && npm run test:behavioral && npm run test:modes && npm run test:exceptions && npm run test:github && npm run test:core && npm run test:advanced && npm run test:patterns && npm run test:version-detection && npm run test:loader-selection && npm run test:output-protection && npm run test:fortress",
+    "test:stack-trace": "node test/stack-trace-security-test.js",
+    "test:all": "npm run test:e2e && npm run test:security-fixes && npm run test:integration && npm run test:config && npm run test:filesystem && npm run test:network && npm run test:environment && npm run test:behavioral && npm run test:modes && npm run test:exceptions && npm run test:github && npm run test:core && npm run test:advanced && npm run test:patterns && npm run test:version-detection && npm run test:loader-selection && npm run test:output-protection && npm run test:fortress && npm run test:stack-trace",
     "test:legacy": "cd test-packages && chmod +x quick-test-all.sh && FS_FIREWALL_INTERACTIVE=false ./quick-test-all.sh",
     "help": "cat README.md"
   },
