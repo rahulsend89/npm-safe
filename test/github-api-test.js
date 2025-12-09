@@ -31,7 +31,7 @@ async function runTests() {
 
   await runGitHubTest(
     'GitHub API monitoring enabled',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      console.log(config.githubApi?.monitorRepoCreation ? 'ENABLED' : 'DISABLED');`,
     (output) => {
       const isEnabled = output.includes('ENABLED');
@@ -44,7 +44,7 @@ async function runTests() {
 
   await runGitHubTest(
     'Repo creation monitoring configured',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      console.log(config.githubApi?.monitorRepoCreation === true ? 'MONITOR_REPO' : 'NO_MONITOR');`,
     (output) => {
       const monitors = output.includes('MONITOR_REPO');
@@ -57,7 +57,7 @@ async function runTests() {
 
   await runGitHubTest(
     'Workflow creation monitoring configured',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      console.log(config.githubApi?.monitorWorkflowCreation === true ? 'MONITOR_WORKFLOW' : 'NO_MONITOR');`,
     (output) => {
       const monitors = output.includes('MONITOR_WORKFLOW');
@@ -75,7 +75,7 @@ async function runTests() {
 
   await runGitHubTest(
     'Config has 5 blocked repo names',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const count = config.githubApi?.blockedRepoNames?.length || 0;
      console.log(count === 5 ? 'HAS_5' : 'WRONG_COUNT_' + count);`,
     (output) => {
@@ -89,7 +89,7 @@ async function runTests() {
 
   await runGitHubTest(
     'Blocks "shai-hulud" repo name',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const blocked = config.githubApi?.blockedRepoNames?.includes('shai-hulud');
      console.log(blocked ? 'BLOCKED' : 'NOT_BLOCKED');`,
     (output) => {
@@ -103,7 +103,7 @@ async function runTests() {
 
   await runGitHubTest(
     'Blocks "secrets" repo name',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const blocked = config.githubApi?.blockedRepoNames?.includes('secrets');
      console.log(blocked ? 'BLOCKED' : 'NOT_BLOCKED');`,
     (output) => {
@@ -117,7 +117,7 @@ async function runTests() {
 
   await runGitHubTest(
     'Blocks "credentials" repo name',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const blocked = config.githubApi?.blockedRepoNames?.includes('credentials');
      console.log(blocked ? 'BLOCKED' : 'NOT_BLOCKED');`,
     (output) => {
@@ -131,7 +131,7 @@ async function runTests() {
 
   await runGitHubTest(
     'Blocks "tokens" repo name',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const blocked = config.githubApi?.blockedRepoNames?.includes('tokens');
      console.log(blocked ? 'BLOCKED' : 'NOT_BLOCKED');`,
     (output) => {
@@ -145,7 +145,7 @@ async function runTests() {
 
   await runGitHubTest(
     'Blocks "keys" repo name',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const blocked = config.githubApi?.blockedRepoNames?.includes('keys');
      console.log(blocked ? 'BLOCKED' : 'NOT_BLOCKED');`,
     (output) => {
@@ -164,7 +164,7 @@ async function runTests() {
 
   await runGitHubTest(
     'Config has 2 blocked workflow patterns',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const count = config.githubApi?.blockedWorkflowPatterns?.length || 0;
      console.log(count === 2 ? 'HAS_2' : 'WRONG_COUNT_' + count);`,
     (output) => {
@@ -178,7 +178,7 @@ async function runTests() {
 
   await runGitHubTest(
     'Blocks "discussion.yaml" workflow',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const blocked = config.githubApi?.blockedWorkflowPatterns?.includes('discussion.yaml');
      console.log(blocked ? 'BLOCKED' : 'NOT_BLOCKED');`,
     (output) => {
@@ -192,7 +192,7 @@ async function runTests() {
 
   await runGitHubTest(
     'Blocks "self-hosted" workflow pattern',
-    `const config = require('../lib/config-loader').load();
+    `const path = require('path'); const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const blocked = config.githubApi?.blockedWorkflowPatterns?.includes('self-hosted');
      console.log(blocked ? 'BLOCKED' : 'NOT_BLOCKED');`,
     (output) => {
@@ -289,7 +289,7 @@ async function runTests() {
 
   await runGitHubTest(
     'GitHubApiMonitor class exists',
-    `const { GitHubApiMonitor } = require('../lib/github-api-monitor');
+    `const path = require('path'); const { GitHubApiMonitor } = require(path.join(process.cwd(), 'lib/github-api-monitor'));
      console.log(GitHubApiMonitor ? 'EXISTS' : 'NOT_EXISTS');`,
     (output) => {
       const exists = output.includes('EXISTS');
@@ -302,8 +302,9 @@ async function runTests() {
 
   await runGitHubTest(
     'GitHubApiMonitor can be instantiated',
-    `const { GitHubApiMonitor } = require('../lib/github-api-monitor');
-     const config = require('../lib/config-loader').load();
+    `const path = require('path'); 
+     const { GitHubApiMonitor } = require(path.join(process.cwd(), 'lib/github-api-monitor'));
+     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const monitor = new GitHubApiMonitor(config, true);
      console.log(monitor ? 'CREATED' : 'NOT_CREATED');`,
     (output) => {
@@ -317,8 +318,9 @@ async function runTests() {
 
   await runGitHubTest(
     'GitHubApiMonitor enabled property works',
-    `const { GitHubApiMonitor } = require('../lib/github-api-monitor');
-     const config = require('../lib/config-loader').load();
+    `const path = require('path'); 
+     const { GitHubApiMonitor } = require(path.join(process.cwd(), 'lib/github-api-monitor'));
+     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const monitor = new GitHubApiMonitor(config, true);
      console.log(monitor.enabled ? 'ENABLED' : 'DISABLED');`,
     (output) => {
@@ -332,8 +334,9 @@ async function runTests() {
 
   await runGitHubTest(
     'GitHubApiMonitor has blockedRepoNames',
-    `const { GitHubApiMonitor } = require('../lib/github-api-monitor');
-     const config = require('../lib/config-loader').load();
+    `const path = require('path'); 
+     const { GitHubApiMonitor } = require(path.join(process.cwd(), 'lib/github-api-monitor'));
+     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const monitor = new GitHubApiMonitor(config, true);
      console.log(monitor.blockedRepoNames?.length > 0 ? 'HAS_REPOS' : 'NO_REPOS');`,
     (output) => {
@@ -347,8 +350,9 @@ async function runTests() {
 
   await runGitHubTest(
     'GitHubApiMonitor has blockedWorkflowPatterns',
-    `const { GitHubApiMonitor } = require('../lib/github-api-monitor');
-     const config = require('../lib/config-loader').load();
+    `const path = require('path'); 
+     const { GitHubApiMonitor } = require(path.join(process.cwd(), 'lib/github-api-monitor'));
+     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const monitor = new GitHubApiMonitor(config, true);
      console.log(monitor.blockedWorkflowPatterns?.length > 0 ? 'HAS_PATTERNS' : 'NO_PATTERNS');`,
     (output) => {
@@ -367,8 +371,9 @@ async function runTests() {
 
   await runGitHubTest(
     'GitHub monitor integrated in network monitor',
-    `const { initialize } = require('../lib/network-monitor');
-     const config = require('../lib/config-loader').load();
+    `const path = require('path');
+     const { initialize } = require(path.join(process.cwd(), 'lib/network-monitor'));
+     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
      const monitor = initialize(config, true);
      console.log(monitor.githubMonitor ? 'INTEGRATED' : 'NOT_INTEGRATED');`,
     (output) => {
