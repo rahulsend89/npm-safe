@@ -56,6 +56,9 @@ install.bat
 npm-safe install package-name
 npm-safe install  # installs all dependencies
 
+# Install with FORTRESS mode (maximum protection)
+npm-safe --fortress install package-name
+
 # Run any npm command
 npm-safe run dev
 npm-safe test
@@ -67,6 +70,30 @@ npm-safe start
 ```bash
 NODE_FIREWALL=1 node --require @rahulmalik/npm-safe app.js
 ```
+
+### Option 2a: Fortress Mode (Maximum Protection)
+
+For maximum security against advanced bypass attacks:
+
+```bash
+NODE_FIREWALL_FORTRESS=1 node --require @rahulmalik/npm-safe app.js
+```
+
+**Fortress Mode provides:**
+- **require.cache protection** - Prevents malicious code from deleting firewall modules
+- **Prototype pollution blocking** - Stops `__proto__` and `constructor` attacks
+- **VM escape prevention** - Blocks sandbox escape attempts
+- **process.binding blocking** - Prevents low-level Node.js API abuse
+- **Worker thread injection** - Auto-injects firewall into spawned workers
+- **Child process hardening** - Enforces firewall in all spawned Node.js processes
+-  **Native addon monitoring** - Tracks and optionally blocks native module loading
+- **Heap snapshot blocking** - Prevents memory dumps during install
+
+**When to use Fortress Mode:**
+- CI/CD environments
+- Installing untrusted packages
+- High-security production deployments
+- Protection against sophisticated supply chain attacks (e.g., Shai-Hulud)
 
 ### Option 3: Node.js 20+ (ESM Support)
 
