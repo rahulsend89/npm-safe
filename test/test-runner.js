@@ -51,10 +51,20 @@ function runFirewallTest(name, code, expectation, options = {}) {
     // Build command arguments (simulates real npm-safe usage)
     const args = [
       loaderFlag,
-      loaderUrl,
-      '-e',
-      code
+      loaderUrl
     ];
+    
+    // CRITICAL: Preload CommonJS interceptors for Node.js 18 (matches npm-safe behavior)
+    // The --loader API only intercepts ESM imports. Requiring from loader context doesn't
+    // reliably initialize interceptors in main process, so -r flags are REQUIRED
+    if (!supportsImport) {
+      const interceptorPath = path.join(projectRoot, 'lib', 'fs-interceptor-v2.js');
+      args.push('-r', interceptorPath);
+      const childProcessInterceptorPath = path.join(projectRoot, 'lib', 'child-process-interceptor.js');
+      args.push('-r', childProcessInterceptorPath);
+    }
+    
+    args.push('-e', code);
 
     const proc = spawn('node', args, {
       env: { 
