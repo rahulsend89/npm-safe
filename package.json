@@ -72,7 +72,6 @@
   "files": [
     "lib/",
     "bin/",
-    "test/",
     "scripts/",
     "index.js",
     "install.sh",
@@ -85,8 +84,6 @@
     "UPGRADE_GUIDE.md",
     "SECURITY_AUDIT.md",
     "NODE_VERSION_COMPATIBILITY.md",
-    "TESTING_GUIDE.md",
-    "CI_CD_GUIDE.md",
     "LICENSE",
     "BUN_SUPPORT.md"
   ],
