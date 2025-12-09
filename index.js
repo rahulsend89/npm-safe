@@ -34,19 +34,17 @@ if (enabled && !global[INIT_COMPLETE]) {
       // NODE.JS RUNTIME: Use Node.js-specific initialization
       // SECURITY: Initialize in strict order, all synchronously
       // 1. Firewall core first (provides base infrastructure)
-      const { FirewallCore } = require('./lib/firewall-core');
-      const firewall = new FirewallCore();
+      // NOTE: firewall-core.js auto-initializes via getInstance() when NODE_FIREWALL=1
+      const { getInstance } = require('./lib/firewall-core');
+      const firewall = getInstance();
       
-      // 2. Initialize immediately (synchronous)
-      firewall.initialize();
-      
-      // 3. Initialize filesystem interceptor (must happen before any fs operations)
+      // 2. Initialize filesystem interceptor (must happen before any fs operations)
       require('./lib/fs-interceptor-v2');
       
-      // 4. Initialize child process interceptor (must happen before any spawns)
+      // 3. Initialize child process interceptor (must happen before any spawns)
       require('./lib/child-process-interceptor');
       
-      // 5. Block process.binding bypass (SECURITY FIX) - only in fortress mode
+      // 4. Block process.binding bypass (SECURITY FIX) - only in fortress mode
       // Fortress mode is enabled via NODE_FIREWALL_FORTRESS=1
       if (process.env.NODE_FIREWALL_FORTRESS === '1' && typeof process.binding === 'function') {
         const originalBinding = process.binding;
@@ -56,14 +54,8 @@ if (enabled && !global[INIT_COMPLETE]) {
         };
       }
       
-      // 6. Mark initialization complete
+      // 5. Mark initialization complete
       global[INIT_COMPLETE] = true;
-      
-      // SECURITY: Prevent any code from running until firewall is ready
-      // This is a fail-closed approach
-      if (!firewall.silent) {
-        console.log('[Firewall] Auto-initialized on module load');
-      }
     }
   } catch (error) {
     // CRITICAL: If initialization fails, we're in an insecure state
