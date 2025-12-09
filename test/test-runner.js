@@ -113,6 +113,11 @@ function runFirewallTest(name, code, expectation, options = {}) {
           resolve(true);
         } else {
           console.log(`✗ (${result.reason})`);
+          // Print last 1000 chars for failed tests
+          if (output && process.env.CI) {
+            const start = Math.max(0, output.length - 1000);
+            console.log('[OUTPUT]', output.substring(start));
+          }
           resolve(false);
         }
       } catch (e) {

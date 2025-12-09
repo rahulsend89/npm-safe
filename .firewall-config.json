@@ -59,6 +59,8 @@
     "allowedPaths": [
       "/tmp/",
       "/var/tmp/",
+      "\\Temp\\",
+      "\\AppData\\Local\\Temp\\",
       "/node_modules/",
       "/.npm/",
       "/.yarn/",
