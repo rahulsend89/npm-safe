@@ -8,48 +8,75 @@ on:
 
 jobs:
   test:
-    name: Test on ${{ matrix.os }}
+    name: Test on ${{ matrix.os }} with Node ${{ matrix.node }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
+        node: ['18.x', '20.x', '22.x']
+        exclude:
+          # Skip Node 18 on Windows (--loader issues)
+          - os: windows-latest
+            node: '18.x'
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      # Test with Node.js 18.14 (skip on Windows)
-      - name: Setup Node.js 18.14
-        if: matrix.os != 'windows-latest'
+      - name: Setup Node.js ${{ matrix.node }}
         uses: actions/setup-node@v4
         with:
-          node-version: '18.14'
+          node-version: ${{ matrix.node }}
       
-      - name: Test with Node.js 18.14
-        if: matrix.os != 'windows-latest'
+      - name: Display Node.js and Platform Info
         run: |
           node --version
-          node test/integration-test.js
+          npm --version
+          echo "OS: ${{ matrix.os }}"
+          echo "Platform: ${{ runner.os }}"
       
-      # Test with Node.js 20.11
-      - name: Setup Node.js 20.11
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.11'
+      - name: Run E2E Real-World Tests
+        run: npm run test:e2e
       
-      - name: Test with Node.js 20.11
-        run: |
-          node --version
-          node test/integration-test.js
+      - name: Run Integration Tests
+        run: npm run test:integration
       
-      # Test with Node.js 22 (latest)
-      - name: Setup Node.js 22
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
+      - name: Run Config Tests
+        run: npm run test:config
       
-      - name: Test with Node.js 22
-        run: |
-          node --version
-          node test/integration-test.js
+      - name: Run Filesystem Tests
+        run: npm run test:filesystem
+      
+      - name: Run Network Tests
+        run: npm run test:network
+      
+      - name: Run Environment Tests
+        run: npm run test:environment
+      
+      - name: Run Behavioral Tests
+        run: npm run test:behavioral
+      
+      - name: Run Mode Tests
+        run: npm run test:modes
+      
+      - name: Run Exceptions Tests
+        run: npm run test:exceptions
+      
+      - name: Run GitHub API Tests
+        run: npm run test:github
+      
+      - name: Run Core Components Tests
+        run: npm run test:core
+      
+      - name: Run Advanced Security Tests
+        run: npm run test:advanced
+      
+      - name: Run Blocked Patterns Tests
+        run: npm run test:patterns
+      
+      - name: Run Version Detection Tests
+        run: npm run test:version-detection
+      
+      - name: Run Loader Selection Tests
+        run: npm run test:loader-selection
