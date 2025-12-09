@@ -2,6 +2,7 @@ node_modules/
 *.log
 .DS_Store
 coverage/
+.idea/
 
 # Firewall logs and reports (generated at runtime)
 firewall-audit.jsonl
@@ -10,3 +11,10 @@ fs-firewall.log
 **/firewall-report.json
 **/firewall-audit.jsonl
 **/fs-firewall.log
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
