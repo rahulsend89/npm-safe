@@ -64,7 +64,15 @@ function runFirewallTest(name, code, expectation, options = {}) {
       args.push('-r', childProcessInterceptorPath);
     }
     
-    args.push('-e', code);
+    // Normalize code for Windows: remove newlines and extra whitespace
+    // Windows shell with -e flag doesn't handle multi-line strings well
+    // Also remove single-line comments to prevent them from commenting out the rest
+    const normalizedCode = code
+      .replace(/\/\/.*$/gm, '') // Remove single-line comments
+      .replace(/\n/g, ' ')       // Remove newlines
+      .replace(/\s+/g, ' ')      // Collapse whitespace
+      .trim();
+    args.push('-e', normalizedCode);
 
     const proc = spawn('node', args, {
       env: { 

@@ -186,7 +186,6 @@ async function runTests() {
     { enabled: true, strictMode: true },
     `const fs = require('fs');
      const path = require('path');
-     // Use project directory which is in allowedPaths via node_modules pattern
      const tmpFile = path.join(process.cwd(), 'test-strict-allowed.txt');
      try {
        fs.writeFileSync(tmpFile, 'test');
