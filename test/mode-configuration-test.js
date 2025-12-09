@@ -326,8 +326,9 @@ async function runTests() {
     'Enforcement mode blocks threats',
     { enabled: true, alertOnly: false },
     `const fs = require('fs');
+     const path = require('path');
      try {
-       fs.writeFileSync('/etc/test-enforcement', 'test');
+       fs.writeFileSync(path.join(process.cwd(), '.github', 'workflows', 'test-enforcement.yml'), 'test');
        console.log('NOT_BLOCKED');
      } catch(e) {
        if(e.message.includes('Firewall') || e.code === 'EACCES') {
