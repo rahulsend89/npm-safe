@@ -46,8 +46,9 @@ if (enabled && !global[INIT_COMPLETE]) {
       // 4. Initialize child process interceptor (must happen before any spawns)
       require('./lib/child-process-interceptor');
       
-      // 5. Block process.binding bypass (SECURITY FIX)
-      if (typeof process.binding === 'function') {
+      // 5. Block process.binding bypass (SECURITY FIX) - only in fortress mode
+      // Fortress mode is enabled via NODE_FIREWALL_FORTRESS=1
+      if (process.env.NODE_FIREWALL_FORTRESS === '1' && typeof process.binding === 'function') {
         const originalBinding = process.binding;
         process.binding = function(name) {
           console.error(`[Firewall] process.binding('${name}') BLOCKED - security bypass attempt`);
