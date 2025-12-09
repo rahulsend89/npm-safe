@@ -33,10 +33,52 @@ async function runTests() {
   // ============================================
   console.log('[1] Environment Protector Initialization\n');
 
-  // Skip output-based tests - child processes run in silent mode
-  // These tests check for console output which isn't reliable in test environment
-  // The actual functionality is tested in the monitoring tests below
-  passed += 3; // Auto-pass initialization tests
+  await runEnvTest(
+    'Environment protector active',
+    {},
+    `const path = require('path');
+     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     console.log(config.environment ? 'PROTECTOR_OK' : 'PROTECTOR_FAIL');`,
+    (output) => {
+      const hasProtector = output.includes('PROTECTOR_OK');
+      return {
+        pass: hasProtector,
+        reason: hasProtector ? 'protector active' : 'not active'
+      };
+    }
+  );
+
+  await runEnvTest(
+    'Protected variables count displayed',
+    {},
+    `const path = require('path');
+     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const count = config.environment?.protectedVariables?.length || 0;
+     console.log(count > 0 ? 'COUNT_OK' : 'COUNT_FAIL');`,
+    (output) => {
+      const hasCount = output.includes('COUNT_OK');
+      return {
+        pass: hasCount,
+        reason: hasCount ? 'count shown' : 'count not shown'
+      };
+    }
+  );
+
+  await runEnvTest(
+    'Shows 11 protected variables',
+    {},
+    `const path = require('path');
+     const config = require(path.join(process.cwd(), 'lib/config-loader')).load();
+     const count = config.environment?.protectedVariables?.length || 0;
+     console.log(count === 11 ? 'HAS_11' : 'WRONG_COUNT');`,
+    (output) => {
+      const has11 = output.includes('HAS_11');
+      return {
+        pass: has11,
+        reason: has11 ? '11 variables' : 'wrong count'
+      };
+    }
+  );
 
   // ============================================
   // 2. DIRECT ACCESS MONITORING (11 tests)
