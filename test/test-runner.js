@@ -112,7 +112,9 @@ function runFirewallTest(name, code, expectation, options = {}) {
           console.log(`✗ (${result.reason})`);
           // Always print output for failed tests to help debug
           if (output) {
-            console.log('[OUTPUT]', output.substring(0, 1000));
+            // Print last 2000 chars to see the actual test output (not just firewall init)
+            const start = Math.max(0, output.length - 2000);
+            console.log('[OUTPUT]', output.substring(start));
           }
           resolve(false);
         }
