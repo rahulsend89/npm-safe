@@ -27,6 +27,14 @@ const {
   TestTracker
 } = require('../utils');
 
+/**
+ * Run a suite of advanced environment-variable bypass tests and return their aggregated summary.
+ *
+ * Executes multiple tests that probe reflection, copying, enumeration, inspection, console output,
+ * and alternative process information paths to detect whether protected environment variables can be exposed.
+ *
+ * @returns {Object} An aggregated test summary containing counts (passed, failed, skipped) and per-test results with reasons and debug output. 
+ */
 async function runAdvancedEnvironmentTests() {
   console.log('\nADVANCED ENVIRONMENT BYPASS TESTS\n');
   console.log('='.repeat(50));

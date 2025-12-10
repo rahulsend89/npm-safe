@@ -48,7 +48,13 @@ console.log(`   Project: ${projectRoot}`);
 console.log(`   Temp Dir: ${getTestTempBase()}`);
 
 /**
- * Print section header
+ * Print a formatted section header to stdout.
+ *
+ * Prints a horizontal separator line, the provided emoji followed by the title,
+ * and a closing separator line for visual grouping.
+ *
+ * @param {string} title - The section title text to display.
+ * @param {string} emoji - An emoji or short icon to prefix the title.
  */
 function printSectionHeader(title, emoji) {
   console.log('\n' + '─'.repeat(60));
@@ -57,7 +63,10 @@ function printSectionHeader(title, emoji) {
 }
 
 /**
- * Print summary table
+ * Print a formatted ASCII test summary table for each category and an overall total.
+ *
+ * @param {Array<{category: string, passed: number, failed: number, skipped: number}>} summaries - Per-category summary objects containing the category name and counts of passed, failed, and skipped tests.
+ * @returns {{ totalPassed: number, totalFailed: number, totalSkipped: number, totalTests: number }} An object with aggregated totals across all categories.
  */
 function printSummaryTable(summaries) {
   const totalPassed = summaries.reduce((acc, s) => acc + s.passed, 0);
@@ -119,7 +128,12 @@ function printSummaryTable(summaries) {
 }
 
 /**
- * Main test runner
+ * Orchestrates and runs all configured security test suites, aggregates results, and exits with an appropriate status code.
+ *
+ * Cleans up and prepares the temporary test base directory, runs filesystem, advanced filesystem,
+ * environment, advanced environment, network, and command test suites in sequence, prints per-section
+ * headers and a final summary table, and performs cleanup after execution. Exits the process with
+ * code 0 when all tests pass or 1 when any test fails. Logs errors and exits with code 1 on unexpected failures.
  */
 async function main() {
   const summaries = [];

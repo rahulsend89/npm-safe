@@ -23,6 +23,18 @@ const {
   TestTracker
 } = require('../utils');
 
+/**
+ * Run the network protection test suite and return a summary of results.
+ *
+ * Executes a series of network-related tests against a minimal firewall configuration.
+ * For each test it creates an isolated test directory, writes a test-specific firewall
+ * config, executes sandboxed Node code (covering http/https/fetch, child_process curl/wget,
+ * net.Socket, dgram UDP, and credential-exfiltration scenarios), evaluates outputs for
+ * expected blocking/logging behavior, and cleans up the test directory. Some tests are
+ * skipped on Windows or when the Node runtime lacks required features.
+ *
+ * @returns {Object} A summary object containing counts and details of passed, failed, and skipped tests.
+ */
 async function runNetworkTests() {
   console.log('\nNETWORK PROTECTION TESTS\n');
   console.log('='.repeat(50));

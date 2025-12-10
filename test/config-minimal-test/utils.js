@@ -19,7 +19,9 @@ const isLinux = platform === 'linux';
 const projectRoot = path.resolve(__dirname, '../..');
 
 /**
- * Get platform-appropriate temp directory for tests
+ * Returns the platform-specific base temporary directory path used for tests.
+ * On Windows this is a 'node-firewall-test' subdirectory of the OS temp dir; on other platforms it is '/tmp/node-firewall-test'.
+ * @returns {string} The base temporary directory path for test files.
  */
 function getTestTempBase() {
   if (isWindows) {
@@ -30,7 +32,11 @@ function getTestTempBase() {
 }
 
 /**
- * Create test directory structure
+ * Create and return a platform-specific test directory for the given test name.
+ *
+ * Ensures the directory exists under the test temp base (creating parents as needed).
+ * @param {string} testName - Subdirectory name to create under the test temp base.
+ * @returns {string} The full path to the created test directory.
  */
 function setupTestDir(testName) {
   const testBase = getTestTempBase();
@@ -40,7 +46,10 @@ function setupTestDir(testName) {
 }
 
 /**
- * Clean up test directory
+ * Remove a test directory and its contents if it exists.
+ *
+ * Silently ignores any errors encountered while removing the directory.
+ * @param {string} testDir - Path of the directory to remove.
  */
 function cleanupTestDir(testDir) {
   try {
@@ -53,7 +62,14 @@ function cleanupTestDir(testDir) {
 }
 
 /**
- * Write a minimal firewall config to test directory
+ * Create a minimal firewall configuration file in the given test directory.
+ *
+ * The written config uses sensible defaults (version "2.0.0" and default mode
+ * settings) merged with any properties provided in `config`.
+ *
+ * @param {string} testDir - Directory where the config file will be created.
+ * @param {Object} [config] - Optional config properties to merge into defaults.
+ * @returns {string} Path to the created '.firewall-config.json' file.
  */
 function writeMinimalConfig(testDir, config) {
   const configPath = path.join(testDir, '.firewall-config.json');
@@ -72,7 +88,15 @@ function writeMinimalConfig(testDir, config) {
 }
 
 /**
- * Create a test script file
+ * Write a test script file into the specified test directory.
+ *
+ * The file is created with the provided code. On non-Windows platforms the
+ * file's mode is set to executable (755); permission changes are ignored on error.
+ *
+ * @param {string} testDir - Directory in which to create the script.
+ * @param {string} scriptName - Name of the script file to create.
+ * @param {string} code - File contents to write.
+ * @returns {string} The full path to the written script file.
  */
 function writeTestScript(testDir, scriptName, code) {
   const scriptPath = path.join(testDir, scriptName);
@@ -87,7 +111,8 @@ function writeTestScript(testDir, scriptName, code) {
 }
 
 /**
- * Get the shell command prefix for the current platform
+ * Return platform-specific shell executable and its command argument.
+ * @returns {{shell: string, shellArg: string}} An object with `shell` set to the shell executable and `shellArg` set to the argument used to pass a command to that shell.
  */
 function getShellCommand() {
   if (isWindows) {
@@ -98,7 +123,9 @@ function getShellCommand() {
 }
 
 /**
- * Get the cat/type command for the current platform
+ * Return a platform-appropriate shell command that outputs a file's contents.
+ * @param {string} filePath - Path to the file to be displayed.
+ * @returns {string} A command string that prints the contents of the specified file.
  */
 function getCatCommand(filePath) {
   if (isWindows) {
@@ -109,7 +136,11 @@ function getCatCommand(filePath) {
 }
 
 /**
- * Get the echo-to-file command for the current platform
+ * Build a platform-appropriate shell command that writes the given text to a file.
+ *
+ * @param {string} content - The text to write into the file (not escaped).
+ * @param {string} filePath - The destination file path.
+ * @returns {string} A shell command that writes `content` to `filePath` on the current platform.
  */
 function getEchoToFileCommand(content, filePath) {
   if (isWindows) {
@@ -120,8 +151,15 @@ function getEchoToFileCommand(content, filePath) {
 }
 
 /**
- * Run a script with the firewall enabled
- */
+ * Execute JavaScript code in a separate Node process with the test firewall enabled.
+ *
+ * @param {string} testDir - Working directory for the spawned Node process.
+ * @param {string} code - JavaScript code to execute (passed to `node -e`).
+ * @param {Object} [options] - Execution options.
+ * @param {boolean} [options.silent=false] - If true, set FIREWALL_SILENT in the child environment.
+ * @param {Object} [options.env] - Additional environment variables to merge into the child process environment.
+ * @param {number} [options.timeout=15000] - Milliseconds before the child process is forcefully killed.
+ * @returns {{ stdout: string, stderr: string, exitCode: number, output: string, error?: string }} An object containing captured `stdout`, `stderr`, the numeric `exitCode`, a combined `output` string, and an optional `error` message when process spawn fails.
 function runWithFirewall(testDir, code, options = {}) {
   return new Promise((resolve) => {
     const nodeMajor = parseInt(process.version.split('.')[0].substring(1));
@@ -184,8 +222,14 @@ function runWithFirewall(testDir, code, options = {}) {
 }
 
 /**
- * Run a script WITHOUT the firewall (baseline test)
- */
+ * Execute Node.js code in a test directory with the firewall disabled.
+ *
+ * @param {string} testDir - Working directory where the code will run.
+ * @param {string} code - JavaScript source to execute (passed to `node -e`).
+ * @param {Object} [options] - Optional execution settings.
+ * @param {Object} [options.env] - Additional environment variables to merge into the process env.
+ * @param {number} [options.timeout] - Maximum execution time in milliseconds (default: 10000).
+ * @returns {{ stdout: string, stderr: string, output: string, exitCode: number, error?: string }} An object containing captured `stdout`, `stderr`, combined `output`, the process `exitCode`, and an optional `error` message when execution failed to start.
 function runWithoutFirewall(testDir, code, options = {}) {
   return new Promise((resolve) => {
     const proc = spawn('node', ['-e', code], {
@@ -221,7 +265,9 @@ function runWithoutFirewall(testDir, code, options = {}) {
 }
 
 /**
- * Check if output indicates blocking
+ * Determine whether a command output contains indicators that an action was blocked.
+ * @param {string} output - The text to inspect for blocking indicators.
+ * @returns {boolean} `true` if any known blocking phrase (for example: "blocked", "denied", "permission denied", "forbidden") appears in the output, `false` otherwise.
  */
 function isBlocked(output) {
   const blockIndicators = [

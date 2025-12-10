@@ -26,6 +26,16 @@ const {
   TestTracker
 } = require('../utils');
 
+/**
+ * Run a suite of advanced filesystem bypass tests and record their outcomes.
+ *
+ * Executes multiple tests that attempt to detect filesystem access leaks and bypasses
+ * (existence checks, metadata leaks, directory listings, path traversal, Linux /proc
+ * exploits, file-handle reads, VM context reads, and require.resolve information leaks),
+ * and returns a summary of results.
+ *
+ * @returns {Object} Summary of test results including counts and per-test details. 
+ */
 async function runAdvancedFilesystemTests() {
   console.log('\nADVANCED FILESYSTEM BYPASS TESTS\n');
   console.log('='.repeat(50));

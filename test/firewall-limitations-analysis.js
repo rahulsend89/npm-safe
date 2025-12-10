@@ -48,6 +48,18 @@ async function testLimitation(name, code, expectBlocked) {
   return result;
 }
 
+/**
+ * Run the full suite of firewall limitation tests and print a summary.
+ *
+ * Executes a series of categorized tests (child process, environment variables,
+ * filesystem, network, code execution, and bypass attempts) using `testLimitation`,
+ * collects which protections are present or missing, prints a final capabilities
+ * summary, and terminates the process.
+ *
+ * Side effects:
+ * - Writes progress and summary output to the console.
+ * - Calls `process.exit(0)` when finished.
+ */
 async function runTests() {
   // ============================================
   // 1. CHILD PROCESS PROTECTION

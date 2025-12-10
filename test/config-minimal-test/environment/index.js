@@ -22,6 +22,17 @@ const {
   TestTracker
 } = require('../utils');
 
+/**
+ * Run a suite of environment-variable protection tests and collect their results.
+ *
+ * Executes multiple tests that verify protected environment variables are not exposed
+ * (direct access, child processes, shell commands, enumeration, JSON.stringify),
+ * ensures non-protected and standard Node.js env vars remain accessible, and checks
+ * pattern-based protections. Each test runs in an isolated test directory and is
+ * cleaned up after execution.
+ *
+ * @returns {{ passed: number, failed: number, skipped: number, details: Array<Object> }} Summary object with counts and per-test results produced by the TestTracker.
+ */
 async function runEnvironmentTests() {
   console.log('\nENVIRONMENT VARIABLE PROTECTION TESTS\n');
   console.log('='.repeat(50));

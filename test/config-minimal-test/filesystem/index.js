@@ -27,6 +27,14 @@ const {
   getEchoToFileCommand
 } = require('../utils');
 
+/**
+ * Run a comprehensive suite of filesystem protection tests and record their outcomes.
+ *
+ * Executes multiple tests covering blocked read/write paths, blocked extensions,
+ * allowed paths, and advanced bypass attempts; aggregates individual test results.
+ *
+ * @returns {{passed: number, failed: number, skipped: number}} An object summarizing test results with `passed`, `failed`, and `skipped` counts.
+ */
 async function runFilesystemTests() {
   console.log('\nFILESYSTEM PROTECTION TESTS\n');
   console.log('=' .repeat(50));

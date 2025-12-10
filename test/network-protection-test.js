@@ -45,6 +45,11 @@ async function runNetworkTest(name, code, expectation) {
   return result;
 }
 
+/**
+ * Execute the full end-to-end network protection test suite, print a coverage summary, and exit the process with code 0 if critical tests pass or 1 if they fail.
+ *
+ * Runs grouped tests for blocked domains, allowed domains, suspicious ports, credential exfiltration patterns, and localhost/private networks; updates global pass/fail counters and logs a final summary and coverage report before exiting.
+ */
 async function runTests() {
   // ============================================
   // 1. BLOCKED DOMAINS (8 tests)

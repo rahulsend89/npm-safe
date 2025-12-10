@@ -23,6 +23,17 @@ const {
   TestTracker
 } = require('../utils');
 
+/**
+ * Run the suite of command execution protection tests and collect their results.
+ *
+ * Executes blocked-patterns, allowed-commands, and spawn/exec variant tests (with
+ * platform-specific branches), tracking pass/fail/skip status for each case.
+ *
+ * @returns {Object} An object summarizing test outcomes with numeric properties:
+ *                   `passed` — number of passed tests,
+ *                   `failed` — number of failed tests,
+ *                   `skipped` — number of skipped tests.
+ */
 async function runCommandTests() {
   console.log('\nCOMMAND EXECUTION PROTECTION TESTS\n');
   console.log('='.repeat(50));
