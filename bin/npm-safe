@@ -8,11 +8,31 @@
 const path = require('path');
 const { spawn } = require('child_process');
 
-// Enable firewall
-process.env.NODE_FIREWALL = '1';
+// Parse command-line flags
+const args = process.argv.slice(2);
+let fortressMode = false;
+
+// Check for --fortress flag
+const fortressIndex = args.indexOf('--fortress');
+if (fortressIndex !== -1) {
+  fortressMode = true;
+  args.splice(fortressIndex, 1); // Remove the flag from args
+}
+
+// Enable firewall (FORTRESS mode if requested)
+// SECURITY: Fortress mode includes base firewall protections
+// Both NODE_FIREWALL and NODE_FIREWALL_FORTRESS must be set so that:
+// 1. Base interceptors (fs-interceptor-v2.js, child-process-interceptor.js) activate via NODE_FIREWALL
+// 2. Fortress hardening (firewall-hardening-fortress.js) activates via NODE_FIREWALL_FORTRESS
+if (fortressMode) {
+  process.env.NODE_FIREWALL = '1'; // Enable base firewall interceptors
+  process.env.NODE_FIREWALL_FORTRESS = '1'; // Enable fortress hardening
+  console.log('FORTRESS MODE ENABLED - Maximum Protection Active');
+} else {
+  process.env.NODE_FIREWALL = '1';
+}
 
 // Get npm command and args early to detect install mode
-const args = process.argv.slice(2);
 const npmCommand = args[0] || '';
 
 // INSTALL MODE: Set environment variable so firewall components can detect it
@@ -70,6 +90,9 @@ const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 
 console.log('======================================================');
 console.log('   npm-safe: Protected npm execution');
+if (fortressMode) {
+  console.log('   🏰 FORTRESS MODE - Maximum Protection');
+}
 console.log('======================================================');
 console.log(`Command: npm ${args.join(' ')}`);
 console.log('------------------------------------------------------\n');
