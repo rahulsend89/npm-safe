@@ -6,11 +6,11 @@ This document outlines the compatibility and feature support across different No
 
 | Node.js Version | Loader API | ESM Protection | CJS Protection | Status |
 |----------------|------------|----------------|----------------|---------|
-| 20.6.0+        | `--import` (stable) | ✅ Full | ✅ Full | **Recommended** |
-| 18.19.0 - 20.5.x | `--loader` (experimental) | ✅ Full | ✅ Full | Supported |
-| 16.12.0 - 18.18.x | `--experimental-loader` | ✅ Full | ✅ Full | Supported |
-| 16.0.0 - 16.11.x | None | ⚠️ Limited | ✅ Full | Limited Support |
-| < 16.0.0       | None | ❌ None | ✅ Full | Not Supported |
+| 20.6.0+        | `--import` (stable) | Full | Full | **Recommended** |
+| 18.19.0 - 20.5.x | `--loader` (experimental) | Full | Full | Supported |
+| 16.12.0 - 18.18.x | `--experimental-loader` | Full | Full | Supported |
+| 16.0.0 - 16.11.x | None | Limited | Full | Limited Support |
+| < 16.0.0       | None | None | Full | Not Supported |
 
 ## Feature Breakdown by Version
 
@@ -19,13 +19,13 @@ This document outlines the compatibility and feature support across different No
 **Loader API:** `--import` with `module.register()`
 
 **Features:**
-- ✅ Full ESM module interception
-- ✅ Full CJS module interception
-- ✅ Network monitoring
-- ✅ File system protection
-- ✅ Child process interception
-- ✅ Behavior monitoring
-- ✅ Stable, non-experimental API
+- Full ESM module interception
+- Full CJS module interception
+- Network monitoring
+- File system protection
+- Child process interception
+- Behavior monitoring
+- Stable, non-experimental API
 
 **Example:**
 ```bash
@@ -45,13 +45,13 @@ node --import ./lib/init.mjs your-app.js
 **Loader API:** `--loader` (experimental)
 
 **Features:**
-- ✅ Full ESM module interception
-- ✅ Full CJS module interception
-- ✅ Network monitoring
-- ✅ File system protection
-- ✅ Child process interception
-- ✅ Behavior monitoring
-- ⚠️ Experimental API (warnings in console)
+- Full ESM module interception
+- Full CJS module interception
+- Network monitoring
+- File system protection
+- Child process interception
+- Behavior monitoring
+- Experimental API (warnings in console)
 
 **Example:**
 ```bash
@@ -70,13 +70,13 @@ node --loader ./lib/legacy-loader.mjs --require ./lib/fs-interceptor-v2.js your-
 **Loader API:** `--experimental-loader`
 
 **Features:**
-- ✅ Full ESM module interception
-- ✅ Full CJS module interception
-- ✅ Network monitoring
-- ✅ File system protection
-- ✅ Child process interception
-- ✅ Behavior monitoring
-- ⚠️ Experimental API (warnings in console)
+- Full ESM module interception
+- Full CJS module interception
+- Network monitoring
+- File system protection
+- Child process interception
+- Behavior monitoring
+- Experimental API (warnings in console)
 
 **Example:**
 ```bash
@@ -95,12 +95,12 @@ node --experimental-loader ./lib/legacy-loader.mjs --require ./lib/fs-intercepto
 **Loader API:** None available
 
 **Features:**
-- ❌ No ESM module interception
-- ✅ Full CJS module interception
-- ✅ Network monitoring (for CJS)
-- ✅ File system protection (for CJS)
-- ✅ Child process interception (for CJS)
-- ⚠️ Behavior monitoring (CJS only)
+- No ESM module interception
+- Full CJS module interception
+- Network monitoring (for CJS)
+- File system protection (for CJS)
+- Child process interception (for CJS)
+- Behavior monitoring (CJS only)
 
 **Example:**
 ```bash
@@ -114,7 +114,7 @@ node --require ./lib/fs-interceptor-v2.js --require ./lib/child-process-intercep
 
 **Warning:** When using Node.js < 16.12, you'll see:
 ```
-⚠️  Warning: Node.js version < 16.12 detected
+[!] Warning: Node.js version < 16.12 detected
    ESM module protection is limited. Consider upgrading to Node.js 16.12+
 ```
 
@@ -156,7 +156,7 @@ npm-safe --version
 The banner will show:
 ```
 ╔════════════════════════════════════════════════════╗
-║  🛡️  npm-safe: Protected npm execution             ║
+║  npm-safe: Protected npm execution                 ║
 ╚════════════════════════════════════════════════════╝
 ```
 

@@ -114,7 +114,7 @@ console.log(`📝 RECOMMENDATION: ${recommendation}`);
 console.log('');
 
 // Detailed breakdown by category
-console.log('📋 DETAILED BREAKDOWN BY ATTACK CATEGORY');
+console.log('DETAILED BREAKDOWN BY ATTACK CATEGORY');
 console.log(''.repeat(60));
 
 results.testSuites.forEach(suite => {
