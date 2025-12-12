@@ -576,19 +576,24 @@ async function runFilesystemTests() {
       fs.mkdirSync(protectedDir, { recursive: true });
       fs.writeFileSync(sourceFile, 'MALICIOUS_PAYLOAD');
       
+      // Get real paths for proper blocking on Linux (handles /tmp -> /private/tmp on macOS)
+      const realProtectedDir = fs.realpathSync(protectedDir);
+      
       writeMinimalConfig(testDir, {
         filesystem: {
           blockedReadPaths: [],
-          blockedWritePaths: [protectedDir.replace(/\\/g, '/') + '/'],
+          blockedWritePaths: [realProtectedDir.replace(/\\/g, '/') + '/'],
           allowedPaths: []
         }
       });
       
       const targetFile = path.join(protectedDir, 'copied.txt');
+      // Use real path for the target file in the test code to match the blocked path
+      const realTargetFile = path.join(realProtectedDir, 'copied.txt');
       const code = `
         const fs = require('fs');
         try {
-          fs.copyFileSync('${escapePath(sourceFile)}', '${escapePath(targetFile)}');
+          fs.copyFileSync('${escapePath(sourceFile)}', '${escapePath(realTargetFile)}');
           console.log('COPY_SUCCESS');
         } catch (e) {
           console.log('COPY_BLOCKED:' + e.message);
@@ -596,7 +601,8 @@ async function runFilesystemTests() {
       `;
       
       const result = await runWithFirewall(testDir, code);
-      const fileExists = fs.existsSync(targetFile);
+      // Check both paths since realpath may differ
+      const fileExists = fs.existsSync(targetFile) || fs.existsSync(realTargetFile);
       
       return {
         pass: !fileExists || isBlocked(result.output) || result.output.includes('COPY_BLOCKED'),
@@ -618,19 +624,24 @@ async function runFilesystemTests() {
       fs.mkdirSync(protectedDir, { recursive: true });
       fs.writeFileSync(sourceFile, 'PAYLOAD_DATA');
       
+      // Get real paths for proper blocking on Linux
+      const realProtectedDir = fs.realpathSync(protectedDir);
+      
       writeMinimalConfig(testDir, {
         filesystem: {
           blockedReadPaths: [],
-          blockedWritePaths: [protectedDir.replace(/\\/g, '/') + '/'],
+          blockedWritePaths: [realProtectedDir.replace(/\\/g, '/') + '/'],
           allowedPaths: []
         }
       });
       
       const targetFile = path.join(protectedDir, 'moved.txt');
+      // Use real path for the target file in the test code to match the blocked path
+      const realTargetFile = path.join(realProtectedDir, 'moved.txt');
       const code = `
         const fs = require('fs');
         try {
-          fs.renameSync('${escapePath(sourceFile)}', '${escapePath(targetFile)}');
+          fs.renameSync('${escapePath(sourceFile)}', '${escapePath(realTargetFile)}');
           console.log('RENAME_SUCCESS');
         } catch (e) {
           console.log('RENAME_BLOCKED:' + e.message);
@@ -638,7 +649,8 @@ async function runFilesystemTests() {
       `;
       
       const result = await runWithFirewall(testDir, code);
-      const fileExists = fs.existsSync(targetFile);
+      // Check both paths since realpath may differ
+      const fileExists = fs.existsSync(targetFile) || fs.existsSync(realTargetFile);
       
       return {
         pass: !fileExists || isBlocked(result.output) || result.output.includes('RENAME_BLOCKED'),

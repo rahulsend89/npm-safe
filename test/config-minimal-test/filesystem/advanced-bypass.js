@@ -279,6 +279,10 @@ async function runAdvancedFilesystemTests() {
           environment: {
             protectedVariables: ['SECRET_TOKEN'],
             allowTrustedModulesAccess: false
+          },
+          filesystem: {
+            // Block /proc/self/environ to prevent env variable leakage
+            blockedReadPaths: ['/proc/self/environ', '/proc/self/']
           }
         });
         
