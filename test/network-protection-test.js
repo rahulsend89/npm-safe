@@ -455,7 +455,7 @@ async function runTests() {
   console.log('Coverage:');
   console.log('  Blocked Domains:     8/8 ✓');
   console.log('  Allowed Domains:     8/8 ✓');
-  console.log('  Suspicious Ports:    0/6 ⚠️  (warnings only, not blocking)');
+  console.log('  Suspicious Ports:    0/6 [!] (warnings only, not blocking)');
   console.log('  Credential Patterns: 7/7 ✓');
   console.log('  Network Policies:    2/2 ✓\n');
 

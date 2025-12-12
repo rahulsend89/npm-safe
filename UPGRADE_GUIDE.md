@@ -2,7 +2,7 @@
 
 ## Version 2.0.1 - Essential Fix (December 5, 2025)
 
-### 🚨 Why You Should Upgrade
+### Why You Should Upgrade
 
 Version 2.0.1 fixes a critical issue where the behavior monitor would generate **thousands of duplicate log entries** during `npm install`, making it difficult to identify genuine security threats.
 
@@ -61,12 +61,12 @@ If you're running an older version, the firewall will automatically display an u
 
 ```
 ╔════════════════════════════════════════════════════╗
-║  ⚠️  UPGRADE AVAILABLE - ESSENTIAL FIX             ║
+║  [!] UPGRADE AVAILABLE - ESSENTIAL FIX             ║
 ╚════════════════════════════════════════════════════╝
 Current version: 2.0.0
 Latest version:  2.0.1
 
-🚨 Version 2.0.1 includes critical fixes:
+Version 2.0.1 includes critical fixes:
    • Fixed excessive logging during npm install
    • Improved behavior monitoring deduplication
    • Better install mode detection

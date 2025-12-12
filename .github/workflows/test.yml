@@ -41,6 +41,9 @@ jobs:
         env:
           FIREWALL_VERBOSE: '1'
       
+      - name: Run Security Fixes Tests
+        run: npm run test:security-fixes
+
       - name: Run Integration Tests
         run: npm run test:integration
       
@@ -84,3 +87,15 @@ jobs:
       
       - name: Run Loader Selection Tests
         run: npm run test:loader-selection
+
+      - name: Run Output File Protection Tests
+        run: npm run test:output-protection
+
+      - name: Run Fortress Mode Tests
+        run: npm run test:fortress
+
+      - name: Run Stack Trace Security Tests
+        run: npm run test:stack-trace
+
+      - name: Run Config Minimal Tests
+        run: npm run test:config-minimal

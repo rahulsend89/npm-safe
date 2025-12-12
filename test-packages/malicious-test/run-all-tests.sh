@@ -92,7 +92,7 @@ echo "🧪 Test Suite 1: Basic Attacks (Common Supply Chain)"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 run_test_with_timeout 30 test-runner.js 20
 if [ $? -eq 124 ]; then
-  echo "❌ Test Suite 1 TIMED OUT (killed after 30s)"
+  echo "[X] Test Suite 1 TIMED OUT (killed after 30s)"
 fi
 
 echo ""
@@ -101,7 +101,7 @@ echo "🧪 Test Suite 2: Advanced Attacks (Sophisticated Techniques)"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 run_test_with_timeout 30 test-advanced-attacks.js 20
 if [ $? -eq 124 ]; then
-  echo "❌ Test Suite 2 TIMED OUT (killed after 30s)"
+  echo "[X] Test Suite 2 TIMED OUT (killed after 30s)"
 fi
 
 echo ""
@@ -110,7 +110,7 @@ echo "🧪 Test Suite 3: Bypass Attacks (Adversarial Red Team)"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 run_test_with_timeout 30 test-bypass-attacks.js 30
 if [ $? -eq 124 ]; then
-  echo "❌ Test Suite 3 TIMED OUT (killed after 30s)"
+  echo "[X] Test Suite 3 TIMED OUT (killed after 30s)"
 fi
 
 echo ""
@@ -124,7 +124,7 @@ echo ""
 
 # Try to get actual results from JSON reports if they exist
 if [ -f "bypass-attack-report.json" ]; then
-  echo "✅ Using actual test results from JSON reports"
+  echo "[OK] Using actual test results from JSON reports"
   echo ""
   echo "For detailed results see:"
   echo "  - bypass-attack-report.json (Primary bypass tests)"

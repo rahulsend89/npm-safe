@@ -13,7 +13,7 @@ let currentDir;
 try {
   currentDir = process.cwd();
 } catch (e) {
-  console.error('❌ Current directory does not exist.');
+  console.error('[ERROR] Current directory does not exist.');
   console.error('   Please navigate to a valid directory (e.g., cd ~) and try again.');
   process.exit(1);
 }
@@ -24,7 +24,7 @@ function loadConfig() {
   try {
     return JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'));
   } catch (e) {
-    console.error('❌ Config file not found. Run: firewall-config init');
+    console.error('[ERROR] Config file not found. Run: firewall-config init');
     process.exit(1);
   }
 }
@@ -94,7 +94,7 @@ function addException(packageName, type, value, reason) {
       break;
       
     default:
-      console.error(`❌ Unknown exception type: ${type}`);
+      console.error(`[ERROR] Unknown exception type: ${type}`);
       console.error('   Valid types: filesystem, network, command');
       return;
   }
