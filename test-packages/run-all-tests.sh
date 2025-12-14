@@ -73,6 +73,6 @@ if [ $FAILED -eq 0 ]; then
     echo -e "${GREEN}🎉 ALL TESTS PASSED!${NC}"
     exit 0
 else
-    echo -e "${RED}❌ SOME TESTS FAILED${NC}"
+    echo -e "${RED}[X] SOME TESTS FAILED${NC}"
     exit 1
 fi

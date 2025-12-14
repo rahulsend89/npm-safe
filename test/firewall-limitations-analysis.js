@@ -283,10 +283,10 @@ async function runTests() {
   console.log('FIREWALL CAPABILITIES:');
   console.log('======================================================\n');
   
-  console.log('✅ CAN PROTECT AGAINST:');
+  console.log('CAN PROTECT AGAINST:');
   canDo.forEach(item => console.log(`  - ${item}`));
   
-  console.log('\n❌ CANNOT PROTECT AGAINST (LIMITATIONS):');
+  console.log('\nCANNOT PROTECT AGAINST (LIMITATIONS):');
   cannotDo.forEach(item => console.log(`  - ${item}`));
   
   console.log('\n======================================================');

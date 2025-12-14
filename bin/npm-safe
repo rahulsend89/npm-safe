@@ -91,7 +91,7 @@ const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 console.log('======================================================');
 console.log('   npm-safe: Protected npm execution');
 if (fortressMode) {
-  console.log('   🏰 FORTRESS MODE - Maximum Protection');
+  console.log('   [FORTRESS MODE] Maximum Protection');
 }
 console.log('======================================================');
 console.log(`Command: npm ${args.join(' ')}`);

@@ -91,7 +91,7 @@ for version in "${VERSIONS[@]}"; do
   
   # Check if version is installed
   if ! nvm ls "$version" &> /dev/null; then
-    echo -e "${YELLOW}⊘ Version not installed, skipping${NC}"
+    echo -e "${YELLOW}[-] Version not installed, skipping${NC}"
     ((SKIPPED++))
     echo ""
     continue
@@ -143,7 +143,7 @@ for version in "${VERSIONS[@]}"; do
         "NODE_FIREWALL=1 node $LOADER_FLAG ./lib/legacy-loader.mjs -e 'console.log(\"OK\")' 2>&1 | grep -q OK" || ((VERSION_FAILED++))
     fi
   else
-    echo -e "  ${YELLOW}⊘ ESM loader not supported (Node < 16.12)${NC}"
+    echo -e "  ${YELLOW}[-] ESM loader not supported (Node < 16.12)${NC}"
   fi
   
   # Test 6: npm-safe wrapper

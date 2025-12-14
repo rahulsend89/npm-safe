@@ -6,12 +6,12 @@ Node.js Firewall (v2.0.1+) includes native support for the Bun runtime.
 
 | Feature | Support Status | Notes |
 |---------|----------------|-------|
-| File System Blocking | ✅ Full | Intercepts `Bun.file`, `Bun.write` |
-| Process Spawning | ✅ Full | Intercepts `Bun.spawn` |
-| Shell Commands | ✅ Full | Intercepts `Bun.$` shell execution |
-| Network Monitoring | ✅ Partial | Basic monitoring, advanced features in progress |
-| Behavior Analysis | ✅ Full | Tracks file/network/spawn activity |
-| Configuration | ✅ Full | Uses same `.firewall-config.json` |
+| File System Blocking | Full | Intercepts `Bun.file`, `Bun.write` |
+| Process Spawning | Full | Intercepts `Bun.spawn` |
+| Shell Commands | Full | Intercepts `Bun.$` shell execution |
+| Network Monitoring | Partial | Basic monitoring, advanced features in progress |
+| Behavior Analysis | Full | Tracks file/network/spawn activity |
+| Configuration | Full | Uses same `.firewall-config.json` |
 
 ## Installation with Bun
 
