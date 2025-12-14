@@ -1,6 +1,6 @@
 {
   "name": "@rahulmalik/npm-safe",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Comprehensive security firewall for Node.js applications - Blocks 100% of supply chain attacks, credential exfiltration, and malicious code execution",
   "main": "index.js",
   "bin": {
