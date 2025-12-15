@@ -296,30 +296,32 @@ async function runNetworkCoverageTests() {
       });
       
       const server = net.createServer();
-      await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
-      const port = server.address().port;
-      
-      const code = `
-        const net = require('net');
-        const client = net.connect({ host: '127.0.0.1', port: ${port} }, () => {
-          console.log('LOCALHOST_ALLOWED');
-          client.end();
-        });
-        client.on('error', (e) => {
-          console.log('LOCALHOST_BLOCKED:' + e.message);
-        });
-        setTimeout(() => process.exit(0), 2000);
-      `;
-      
-      const result = await runWithFirewall(testDir, code, { timeout: 5000 });
-      
-      server.close();
-      
-      return {
-        pass: result.output.includes('LOCALHOST_ALLOWED'),
-        reason: result.output.includes('LOCALHOST_BLOCKED') ? 'ERROR: localhost blocked when allowLocalhost=true' : 'allowed',
-        debug: result.output
-      };
+      try {
+        await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+        const port = server.address().port;
+        
+        const code = `
+          const net = require('net');
+          const client = net.connect({ host: '127.0.0.1', port: ${port} }, () => {
+            console.log('LOCALHOST_ALLOWED');
+            client.end();
+          });
+          client.on('error', (e) => {
+            console.log('LOCALHOST_BLOCKED:' + e.message);
+          });
+          setTimeout(() => process.exit(0), 2000);
+        `;
+        
+        const result = await runWithFirewall(testDir, code, { timeout: 5000 });
+        
+        return {
+          pass: result.output.includes('LOCALHOST_ALLOWED'),
+          reason: result.output.includes('LOCALHOST_BLOCKED') ? 'ERROR: localhost blocked when allowLocalhost=true' : 'allowed',
+          debug: result.output
+        };
+      } finally {
+        server.close();
+      }
     } finally {
       cleanupTestDir(testDir);
     }
