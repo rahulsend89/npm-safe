@@ -99,3 +99,6 @@ jobs:
 
       - name: Run Config Minimal Tests
         run: npm run test:config-minimal
+
+      - name: Run Config Coverage Tests
+        run: npm run test:config-coverage
