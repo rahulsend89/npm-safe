@@ -421,12 +421,54 @@ async function runAdvancedFilesystemTests() {
     }
   });
   
+  // Test 9: Child process bypass
+  await tracker.runTest('blockedReadPaths - child process bypass', async () => {
+    const testDir = setupTestDir('fs-child');
+    const secretDir = path.join(testDir, 'secrets');
+    const secretFile = path.join(secretDir, 'child-secret.txt');
+    
+    try {
+      fs.mkdirSync(secretDir, { recursive: true });
+      fs.writeFileSync(secretFile, 'CHILD_PROCESS_SECRET');
+      
+      const realSecretDir = fs.realpathSync(secretDir);
+      
+      writeMinimalConfig(testDir, {
+        filesystem: {
+          blockedReadPaths: [realSecretDir.replace(/\\/g, '/') + '/'],
+          blockedWritePaths: [],
+          allowedPaths: []
+        }
+      });
+      
+      const code = `
+        const childProcess = require('child_process');
+        try {
+          const result = childProcess.execFileSync('node', ['-e', 'console.log(require("fs").readFileSync("${escapePath(secretFile)}", "utf8"))']);
+          console.log('CHILD_PROCESS_SUCCESS:' + result.toString());
+        } catch (e) {
+          console.log('CHILD_PROCESS_BLOCKED:' + e.message);
+        }
+      `;
+      
+      const result = await runWithFirewall(testDir, code);
+      
+      return {
+        pass: !result.output.includes('CHILD_PROCESS_SECRET'),
+        reason: result.output.includes('CHILD_PROCESS_SECRET') ? 'child process bypass' : 'blocked',
+        debug: result.output
+      };
+    } finally {
+      cleanupTestDir(testDir);
+    }
+  });
+  
   // =========================================================================
   // REQUIRE.RESOLVE INFORMATION LEAK
   // =========================================================================
   console.log('\n--- Information Leakage ---\n');
   
-  // Test 9: require.resolve on blocked path
+  // Test 10: require.resolve on blocked path
   await tracker.runTest('blockedReadPaths - require.resolve path leak', async () => {
     const testDir = setupTestDir('fs-resolve');
     const secretDir = path.join(testDir, 'secrets');

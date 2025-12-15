@@ -3,7 +3,7 @@
  * Tests to understand what the firewall CAN and CANNOT protect against
  */
 
-const { runFirewallTest } = require('./test-runner');
+const { runFirewallTest, createTempConfig, cleanupTempConfig } = require('./test-runner');
 
 console.log('======================================================');
 console.log('   Firewall Limitations Analysis');
@@ -12,7 +12,7 @@ console.log('======================================================\n');
 let canDo = [];
 let cannotDo = [];
 
-async function testLimitation(name, code, expectBlocked) {
+async function testLimitation(name, code, expectBlocked, options = {}) {
   process.stdout.write(`Testing: ${name}... `);
   
   const result = await runFirewallTest(
@@ -42,7 +42,7 @@ async function testLimitation(name, code, expectBlocked) {
         return { pass: false, reason: 'unexpected block' };
       }
     },
-    { timeout: 3000 }
+    { timeout: 3000, ...options }
   );
   
   return result;
@@ -93,6 +93,20 @@ async function runTests() {
   // ============================================
   console.log('\n[2] Environment Variable Protection\n');
 
+  const envConfigPath = createTempConfig({
+    version: '2.0.0',
+    mode: {
+      enabled: true,
+      interactive: false,
+      strictMode: false,
+      alertOnly: false
+    },
+    environment: {
+      protectedVariables: ['GITHUB_TOKEN'],
+      allowTrustedModulesAccess: false
+    }
+  });
+
   await testLimitation(
     'Block direct access to GITHUB_TOKEN',
     `try {
@@ -101,7 +115,8 @@ async function runTests() {
      } catch(e) {
        console.log('BLOCKED');
      }`,
-    true
+    true,
+    { env: { FIREWALL_CONFIG: envConfigPath, GITHUB_TOKEN: 'ghp_test_token_123' } }
   );
 
   await testLimitation(
@@ -113,7 +128,8 @@ async function runTests() {
      } catch(e) {
        console.log('BLOCKED');
      }`,
-    true  // We WANT this blocked
+    true,
+    { env: { FIREWALL_CONFIG: envConfigPath, GITHUB_TOKEN: 'ghp_test_token_123' } }
   );
 
   await testLimitation(
@@ -121,12 +137,15 @@ async function runTests() {
     `const { spawn } = require('child_process');
      const proc = spawn('node', ['-e', 'console.log(process.env.GITHUB_TOKEN)']);
      proc.stdout.on('data', (data) => {
-       const output = data.toString();
-       console.log(output && output.trim() && output !== 'undefined' ? 'ALLOWED' : 'BLOCKED');
+       const output = data.toString().trim();
+       console.log(output && output !== 'undefined' ? 'ALLOWED' : 'BLOCKED');
      });
      setTimeout(() => {}, 300);`,
-    true  // We WANT this blocked
+    true,
+    { env: { FIREWALL_CONFIG: envConfigPath, GITHUB_TOKEN: 'ghp_test_token_123' } }
   );
+
+  cleanupTempConfig(envConfigPath);
 
   // ============================================
   // 3. FILESYSTEM PROTECTION
@@ -252,14 +271,26 @@ async function runTests() {
   );
 
   await testLimitation(
-    'Bypass via process.binding',
+    'Bypass via process.binding (normal mode)',
     `try {
        const fs = process.binding('fs');
        console.log(fs ? 'ALLOWED' : 'BLOCKED');
      } catch(e) {
        console.log('BLOCKED');
      }`,
-    true
+    false
+  );
+
+  await testLimitation(
+    'Bypass via process.binding (fortress mode)',
+    `try {
+       const fs = process.binding('fs');
+       console.log(fs ? 'ALLOWED' : 'BLOCKED');
+     } catch(e) {
+       console.log('BLOCKED');
+     }`,
+    true,
+    { env: { NODE_FIREWALL_FORTRESS: '1' } }
   );
 
   await testLimitation(
