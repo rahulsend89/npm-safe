@@ -240,7 +240,7 @@ async function runNetworkCoverageTests() {
         
         const code = `
           const http = require('http');
-          const data = '${test.replace(/'/g, "\\'")}';
+          const data = '${test.replace(/\\/g, "\\\\").replace(/'/g, "\\'")}';
           
           const req = http.request({
             hostname: 'example.com',
