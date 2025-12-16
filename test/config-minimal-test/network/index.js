@@ -29,6 +29,10 @@ async function runNetworkTests() {
   
   const tracker = new TestTracker('network');
   
+  // Detect Node.js version for ESM dynamic import support
+  const nodeMajorVersion = parseInt(process.versions.node.split('.')[0]);
+  const supportsESMHooks = nodeMajorVersion >= 20;
+  
   // =========================================================================
   // BLOCKED DOMAINS TESTS
   // =========================================================================
@@ -83,6 +87,11 @@ async function runNetworkTests() {
   });
 
   await tracker.runTest('blockedDomains - dns.lookup blocked (dynamic import node:dns)', async () => {
+    // Skip on Node.js 18 - ESM hooks not supported (register() API added in Node.js 20.6.0)
+    if (!supportsESMHooks) {
+      return { pass: true, reason: 'skipped (Node.js 18 - ESM hooks not supported)', skipped: true };
+    }
+    
     const testDir = setupTestDir('net-dns-lookup-import');
 
     try {
@@ -1236,6 +1245,11 @@ QkEF0w9oWkHk0v1J5Fh0yO7+0mYc1X1g1r5Gq1qQmZ5o9J8bXq1J1m2w0pW1oZ2l
   });
 
   await tracker.runTest('suspiciousPorts - dgram send blocked (dynamic import node:dgram)', async () => {
+    // Skip on Node.js 18 - ESM hooks not supported (register() API added in Node.js 20.6.0)
+    if (!supportsESMHooks) {
+      return { pass: true, reason: 'skipped (Node.js 18 - ESM hooks not supported)', skipped: true };
+    }
+    
     const testDir = setupTestDir('net-udp-import');
 
     try {

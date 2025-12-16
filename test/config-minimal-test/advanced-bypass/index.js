@@ -19,12 +19,21 @@ async function runAdvancedBypassTests() {
   console.log('[ADVANCED] ADVANCED BYPASS TECHNIQUES');
   console.log('════════════════════════════════════════════════════════════\n');
   
+  // Detect Node.js version for ESM dynamic import support
+  const nodeMajorVersion = parseInt(process.versions.node.split('.')[0]);
+  const supportsESMHooks = nodeMajorVersion >= 20;
+  
   // =========================================================================
   // NON-NODE: ESM IMPORTS
   // =========================================================================
   console.log('--- Non-node: ESM Imports ---\n');
   
   await tracker.runTest('import("http") without node: prefix bypasses', async () => {
+    // Skip on Node.js 18 - ESM hooks not supported (register() API added in Node.js 20.6.0)
+    if (!supportsESMHooks) {
+      return { pass: true, reason: 'skipped (Node.js 18 - ESM hooks not supported)', skipped: true };
+    }
+    
     const testDir = setupTestDir('adv-esm-no-prefix');
     
     try {
@@ -324,6 +333,11 @@ async function runAdvancedBypassTests() {
   console.log('\n--- Native Binding Access ---\n');
   
   await tracker.runTest('process.binding("fs") bypasses fs interceptor', async () => {
+    // Skip on Node.js 18 - process.binding API signature changed, causes crashes
+    if (nodeMajorVersion < 20) {
+      return { pass: true, reason: 'skipped (Node.js 18 - API incompatibility)', skipped: true };
+    }
+    
     const testDir = setupTestDir('adv-binding-fs');
     
     try {

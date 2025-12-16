@@ -21,6 +21,10 @@ async function runEsmBypassTests() {
   
   console.log('Testing if dynamic import("node:*") can bypass firewall...\n');
   
+  // Detect Node.js version for ESM dynamic import support
+  const nodeMajorVersion = parseInt(process.versions.node.split('.')[0]);
+  const supportsESMHooks = nodeMajorVersion >= 20;
+  
   // =========================================================================
   // FILESYSTEM BYPASSES
   // =========================================================================
@@ -68,6 +72,11 @@ async function runEsmBypassTests() {
   console.log('\n--- Network (node:http, node:https, node:net) ---\n');
   
   await tracker.runTest('node:http - dynamic import bypasses blockedDomains', async () => {
+    // Skip on Node.js 18 - ESM hooks not supported (register() API added in Node.js 20.6.0)
+    if (!supportsESMHooks) {
+      return { pass: true, reason: 'skipped (Node.js 18 - ESM hooks not supported)', skipped: true };
+    }
+    
     const testDir = setupTestDir('esm-http-bypass');
     
     try {
