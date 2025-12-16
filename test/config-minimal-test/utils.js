@@ -151,6 +151,7 @@ function runWithFirewall(testDir, code, options = {}) {
       env: {
         ...process.env,
         NODE_FIREWALL: '1',
+        FIREWALL_CONFIG: path.join(testDir, '.firewall-config.json'),
         FIREWALL_SILENT: options.silent ? '1' : '',
         ...options.env
       },
