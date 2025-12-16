@@ -52,7 +52,7 @@ async function runCommandsCoverageTests() {
         
         const code = `
           const { exec } = require('child_process');
-          exec('${cmd.replace(/'/g, "\\'")}', (err, stdout, stderr) => {
+          exec('${cmd.replace(/\\/g, "\\\\").replace(/'/g, "\\'")}', (err, stdout, stderr) => {
             if (err) {
               console.log('CMD_BLOCKED:' + err.message);
             } else {
