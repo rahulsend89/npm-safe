@@ -29,9 +29,13 @@ const os = require('os');
 
 const { isWindows, isMac, isLinux, getTestTempBase, cleanupTestDir, projectRoot } = require('./utils');
 const { runFilesystemTests } = require('./filesystem');
+const { runFilesystemAdvancedTests } = require('./filesystem/advanced-bypass');
 const { runEnvironmentTests } = require('./environment');
+const { runEnvironmentAdvancedTests } = require('./environment/advanced-bypass');
 const { runNetworkTests } = require('./network');
 const { runCommandTests } = require('./commands');
+const { runEsmBypassTests } = require('./esm-bypass');
+const { runAdvancedBypassTests } = require('./advanced-bypass');
 
 // Advanced bypass tests
 const { runAdvancedFilesystemTests } = require('./filesystem/advanced-bypass');
@@ -148,6 +152,12 @@ async function main() {
     
     printSectionHeader('COMMAND EXECUTION PROTECTION', '[CMD]');
     summaries.push(await runCommandTests());
+    
+    printSectionHeader('ESM BUILT-IN BYPASS TESTS', '[ESM]');
+    summaries.push(await runEsmBypassTests());
+    
+    printSectionHeader('ADVANCED BYPASS TECHNIQUES', '[ADV]');
+    summaries.push(await runAdvancedBypassTests());
     
     // Final cleanup
     cleanupTestDir(testBase);
